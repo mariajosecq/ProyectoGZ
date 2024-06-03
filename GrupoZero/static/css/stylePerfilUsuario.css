@@ -1,0 +1,130 @@
+/*Fuentes*/
+@font-face {
+    font-family: 'PoppinsBold';
+    src: url("{% static 'fuentes/poppins/Poppins-Bold.otf'%}") format('truetype');
+}
+@font-face {
+    font-family: 'PoppinsLight';
+    src: url("{% static 'fuentes/poppins/Poppins-Light.otf'%}") format('truetype');
+}
+.fuente-titulo-negro{
+    font-family:'PoppinsBold', sans-serif;
+    color: #1c1c1c;
+}
+.fuente-titulo-blanco{
+    font-family:'PoppinsBold', sans-serif;
+    color: #e3e3e3;
+}
+.fuente-parrafo-negro{
+    font-family: 'PoppinsLight';
+    font-size:medium;
+    color: #1c1c1c;
+}
+.fuente-parrafo-blanco{
+    font-family: 'PoppinsLight';
+    font-size:medium;
+    color: #e3e3e3;
+}
+/*Foto de perfil*/
+.img-redonda{
+    border-radius: 50%; 
+    width: 300px; 
+    height: 300px; 
+    object-fit: cover; 
+    margin-bottom: 5%;
+    margin-right: 5%;
+}
+/*Cuadro de texto*/
+.margen-parrafo{
+    text-align: left;
+    margin:40px;
+}
+.caja-texto{
+    border: 0px solid #000;
+    background-color: #1c1c1c;
+    border-radius: 10px; 
+}
+.espacio-parrafo{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.foto-perfil{
+    height: 300px; 
+}
+.row{
+    margin-bottom: 5%;
+}
+
+.distancia-botones{
+    margin-right: 40%; 
+}
+/*Botones*/
+.boton-perfil {
+    transition:0.5S;
+    height: 20%;
+    width: 30%;
+    color: #1c1c1c;
+    background-color: transparent;
+    border-color: #000000;
+    border-radius: 5px; 
+    font-size: large;
+}
+.boton-perfil:hover {
+    color: #e3e3e3;
+    background-color: #1c1c1c;
+    transition:0.5S;
+    opacity: 80%;
+}
+.boton-editar {
+    height: 10%;
+    width: 120px;
+    color: #e3e3e3;
+    background-color: transparent;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px; 
+    font-size: small;
+    transition:0.3S;
+}
+.boton-editar:hover {
+    color: #1c1c1c;
+    background-color: #e3e3e3;
+    transition:0.3S;
+    opacity: 80%;
+}
+/*Modal*/
+.modal-content{
+    border-radius: 5px !important;
+    border: 1px solid #e3e3e3!important;
+}
+.boton-modal{
+    color: #483f34;
+    background-color: transparent !important;
+    border-color: #000000 !important;
+    border-radius: 5px; 
+    font-size: large;
+}
+.modal-header{
+    background-color: #1c1c1c; 
+}
+.modal-title{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.modal-header .btn-close{
+    margin-right: 15px !important;
+    background-color: #e3e3e3;
+}
+.modal-footer{
+    margin-right: 25px;
+    margin-bottom: 20px;
+    border: 0px !important;
+}
+.form-control::placeholder {
+    color: #999 !important; 
+    opacity: 0.5 !important; 
+}
+.modal-body{
+    margin-left: 25px;
+    margin-right: 25px;
+}
