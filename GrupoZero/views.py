@@ -33,3 +33,7 @@ def detalle_autor3(request):
 def blog(request):
     context={}
     return render(request, 'GrupoZero/blog.html',context)
+
+def base(request):
+    context={}
+    return render(request, 'GrupoZero/base.html',context)

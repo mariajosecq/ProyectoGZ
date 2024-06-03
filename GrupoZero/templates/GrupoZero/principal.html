@@ -1,27 +1,9 @@
+{% extends 'GrupoZero/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title%} Inicio {% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-    <link rel="stylesheet" href="{% static 'css/stylePrincipal.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styleNavbar.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styleNewsletter.css' %}">
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
-
-<body>
-
-
-    <!--Barra de Navegación-->
-    <header>
-
-    </header>
+{% block content %}
 
     <!-- carrusel -->
     <div id="carouselExampleCaptions" class="carousel slide">
@@ -73,34 +55,37 @@
 
 
     <!-- Infromacion + Logo -->
-    <div class="container-fluid info">
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-5"></div>
-            <div class="col-md-2">
-                <div class="logo"><img class=" img-logo" src="{% static '/img/img-principal/logo-blanco.png' %}" alt="logo"></div>
-            </div>
-            <div class="col-md-5"></div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div class="txt">
-                    <center>
-                        <p>Explora Grupo Zero, donde el arte cobra vida en todas sus formas. Somos una cooperativa de
-                            artistas apasionados por
-                            la pintura, escultura, tejido, orfebrería y más. Cada obra es una invitación a la reflexión
-                            y la emoción. Únete a nosotros
-                            en este viaje artístico sin límites. ¡Bienvenido a Grupo Zero, donde el arte es nuestro
-                            estilo de vida!</p>
-                    </center>
+    
+        <div class="container-fluid info" style="background-image: url('{% static "/img/img-principal/degradado-negro.png" %}');">
+        
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                    <div class="logo"><img class=" img-logo" src="{% static '/img/img-principal/logo-blanco.png' %}" alt="logo"></div>
                 </div>
+                <div class="col-md-5"></div>
             </div>
-            <div class="col-md-4"></div>
+            <br>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="txt">
+                        <center>
+                            <p>Explora Grupo Zero, donde el arte cobra vida en todas sus formas. Somos una cooperativa de
+                                artistas apasionados por
+                                la pintura, escultura, tejido, orfebrería y más. Cada obra es una invitación a la reflexión
+                                y la emoción. Únete a nosotros
+                                en este viaje artístico sin límites. ¡Bienvenido a Grupo Zero, donde el arte es nuestro
+                                estilo de vida!</p>
+                        </center>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
         </div>
-    </div>
+    
     <br>
     <br>
 
@@ -149,29 +134,4 @@
     </div>
 
     <br>
-
-    <!-- Pie de la pagina Web -->
-    <footer></footer>
-
-    <!-- formulario registro newsletter -->
-    <div class="formNewsLetter"></div>
-
-    <!-- popover -->
-    <div class="avisoNewsLetter"></div>
-
-    <!-- formulario inicioar sesion -->
-    <formIniciarSesion></formIniciarSesion>
-
-    <script src="{% static 'js/navbar_pie.js' %}"></script>
-    <script src="{% static 'js/Newsletter.js' %}"></script>
-    <script src="{% static 'js/contacto.js' %}"></script>
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-    {% block content %}
-    {% endblock %}
-
-</body>
-
-</html>
+{% endblock %}

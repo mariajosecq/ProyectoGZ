@@ -22,7 +22,6 @@
 
 /* Descripcion del grupo + logo*/
 .info {
-    background-image: url("{% static '/img/img-principal/degradado-negro.png' %}");
     width: 100%;
     height: 300px;
     align-items: center;
