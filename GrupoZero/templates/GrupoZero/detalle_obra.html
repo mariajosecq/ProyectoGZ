@@ -1,0 +1,125 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Obra</title>
+    <link rel="stylesheet" href="{% static 'css/styleDetalleObra.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleNavbar.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}       
+</head>
+
+<body>
+
+
+    <!--Barra de Navegación-->
+    <header>
+
+    </header>
+
+    <br>
+
+
+    <!-- Seccion de informacion y descripcion de obra con imagen-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <!--Imagen autor-->
+                <div class="img-obra">
+                    <img src="{% static 'img/img-detalleObra/ParejaAbrazo.jpg' %}" alt="img obra" />
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6 caja-texto contenedor-obra">
+                <div class="desc">
+                    <h3>
+                        Abrazo de pareja
+                    </h3>
+                    <br>
+                    <p><b>TÉCNICA:</b> Resina epóxica con estructura metálica<br>
+                        <b>TIPO DE ESCULTURA:</b> Figura Humana<br>
+                        <b>MATERIAL ESCULTURA:</b> Resina<br>
+                        <b>DIMENSIONES y PESO:</b> Alto: 73 cm,
+                        Ancho: 25 cm,
+                        Longitud: 25 cm,
+                        Peso: kg<br>
+                        <b>OTROS DETALLES:</b> ...........<br>
+                        <br>
+                        <b>AUTOR: </b><a class="enlace" href="detalle_autor2.html">Sergio Roger</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- Tarjetas de las fotos de la obra -->
+    <div class="gal">
+        <div class="titulo">
+            <h2>
+                <center>Galería de fotos</center>
+            </h2>
+        </div>
+
+        <div class="carr">
+            <div class="card">
+                <div class="img">
+                    <a href="#"><img src="{% static 'img/img-detalleObra/ParejaAbrazo.jpg' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <a href="#"><img src="{% static 'img/img-detalleObra/ParejaAbrazo2.jpg' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <a href="#"><img src="{% static 'img/img-detalleObra/ParejaAbrazo3.jpg' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <a href="#"><img src="{% static 'img/img-detalleObra/ParejaAbrazo4.jpg' %}" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- Pie de la pagina Web -->
+    <footer></footer>
+
+    <!-- formulario registro newsletter -->
+    <div class="formNewsLetter"></div>
+
+    <!-- popover -->
+    <div class="avisoNewsLetter"></div>
+
+    <!-- formulario inicioar sesion -->
+    <formIniciarSesion></formIniciarSesion>
+
+    <script src="{% static 'js/navbar_pie.js' %}"></script>
+    <script src="{% static 'js/Newsletter.js' %}"></script>
+    <script src="{% static 'js/contacto.js' %}"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>

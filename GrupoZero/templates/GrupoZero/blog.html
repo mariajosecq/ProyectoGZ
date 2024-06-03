@@ -1,0 +1,220 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'css/styleBlog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleNavbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleNewsletter.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}   
+</head>
+
+    <!--Barra de Navegación-->
+    <header></header>
+
+    <br><br><br><br>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <h1 class="fuente-titulo-negro">BLOG</h1>
+            </div>
+            <div class="col-md-6"></div>
+            <div class="col-md-2">
+                <button class="boton-unirse">Unirse al Newsletter</button>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <!--Cuadro de texto de publicación-->
+                <div class="d-flex align-items-start caja-texto">
+                    <div class="contenido-publicacion">
+                        <!--Foto de publicación-->
+                        <div class="d-flex foto-perfil justify-content-center align-items-center">
+                            <img src="{% static 'img/img-blog/publicacion1.jpg' %}" alt="Imagen Publicación 1" class="img-rectangulo">
+                        </div>
+                        <br>
+                        <h3 class="fuente-titulo-negro">Un nuevo 'caravaggio' divide al mundo del arte</h3>
+                        <p>Por: Daniela Fernández / 21 de Abril de 2024</p>
+                        <br>
+                        <p class="fuente-parrafo-negro">
+                            Ahí está. Sobre estas líneas. ¿Caravaggio o no? Hay que reconocer que la obra,
+                            a través de la imagen que ha difundido la agencia Reuters, tiene una elevada calidad.
+                            Sí, finalmente, es una copia de época, sin duda es de las mejores. La tela está muy bien
+                            conservada y como siempre sucede con el maestro barroco en sus cuadros de reciente
+                            atribución,
+                            las dudas son muchas y la unanimidad de los expertos casi imposible.
+                        </p>
+                        <p class="fuente-parrafo-negro">
+                            Pero esa es la tela que una familia francesa de las afueras de Toulouse encontró en su ático
+                            cuando
+                            reparaba en 2014 una fuga de agua. Oculto tras un muro, no demasiado grueso, estaba un
+                            lienzo oscurecido
+                            por el polvo y el tiempo. Los propietarios de la casa telefonearon a un subastador de la
+                            zona, Marc Labarde,
+                            quien a su vez era socio de un galerista experto en Maestros Antiguos bien conocido en
+                            París: Eric Turquin.
+                            Juntos, con agua y un algodón, limpiaron por encima el cuadro. A primera vista parecía uno
+                            de los muchos lienzos
+                            caravaggistas que circulan por el mercado. Sin embargo un trabajo más concienzudo de
+                            restauración abrió la puerta
+                            a otras miradas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+
+                <!--Cuadro de texto de publicación-->
+                <div class="d-flex align-items-start caja-texto">
+                    <div class="contenido-publicacion">
+
+                        <!--Foto de publicación-->
+                        <div class="d-flex foto-perfil justify-content-center align-items-center">
+                            <img src="{% static 'img/img-blog/publicacion2.jpg' %}" alt="Imagen Publicación 1" class="img-rectangulo">
+                        </div>
+                        <br>
+                        <h3 class="fuente-titulo-negro">Picasso S.A., una máquina de pintar dinero</h3>
+                        <p>Por: Gabriel Marín / 16 de Marzo de 2024</p>
+                        <br>
+                        <p class="fuente-parrafo-negro">
+                            Cuando Picasso falleció hace 43 años dejó tras de sí más de 45.000 obras, y un inmenso dolor
+                            de cabeza:
+                            multitud de herederos y ningún testamento.
+                        </p>
+                        <p class="fuente-parrafo-negro">
+                            El catálogo de su producción artística a su muerte resultó increíble. Legó 1.885 pinturas,
+                            1.228 esculturas,
+                            7.089 dibujos, 30.000 grabados, 3.222 obras en cerámica y 150 libros de apuntes y bocetos.
+                            Un inventario al
+                            que hay sumar tapices, libros, 4,5 millones de dólares de la época en metálico, 1,3 millones
+                            en oro y dos chateaux,
+                            entre otras viviendas. Además de una cantidad no determinada en acciones y bonos. Un
+                            patrimonio ingente. Tanto es
+                            así que para almacenarlo “hubiera hecho falta alquilar el Empire State Building”, contará
+                            Claude Picasso, hijo del
+                            genio y de Françoise Gilot, tras finalizar el recuento.
+                        </p>
+                        <p class="fuente-parrafo-negro">
+                            Pero como con el malagueño nada es sencillo, la historia se complica más al sumarle los
+                            inmensos problemas que
+                            generan la autentificación de las obras, la gestión de sus derechos o los acuerdos de
+                            reproducción de las imágenes
+                            de las piezas. Al fin y al cabo hablamos de una herencia valorada en miles de millones de
+                            euros. Muy lejos de los
+                            parcos 250 millones de dólares con los que se quiso tasar en 1980.
+                        </p>
+                        <p class="fuente-parrafo-negro">
+                            La revista Vanity Fair, en una interesante pieza, pone al lector sobre la pista de este
+                            relato. El maestro
+                            convertido en Sociedad Anónima. “Un hombre” —cuenta el reconocido marchante suizo Marc
+                            Blondeau— “que si estuviera
+                            vivo hoy sería una de las diez mayores fortunas del planeta”. Alguien que se ha
+                            transformado, o lo han transformado,
+                            en una marca de coches por la que Citroën paga a sus herederos 20 millones de dólares
+                            durante 1999. Desde entonces
+                            se han vendido más de 3,5 millones de unidades de ese vehículo en 30 países. El genio
+                            transformado, ahora, en marca.
+                            Poco importan sus lados oscuros. Es uno de los artistas más falsificados, copiados e
+                            imitados del mundo. Una deriva
+                            que se justifica por sus elevados precios y también por la falta de un catálogo razonado que
+                            ordene, explique y
+                            separe el grano de la paja.
+                        </p>
+                        <p class="fuente-parrafo-negro">
+                            Y, desde luego, a su alrededor todo es negocio. Incluso en el cine. En 1996 —desgrana la
+                            revista— James Cameron
+                            estaba rodando Titanic. En una de las escenas Kate Winslet, refugiada en su camarote,
+                            desembala de una caja Las
+                            señoritas de Avignon (1907). En la película, el lienzo termina flotando a la deriva mientras
+                            se escora
+                            irremediablemente el trasatlántico. Algo que, desde luego, nunca ocurrió. Pues bien, la
+                            productora solicitó los
+                            derechos del cuadro para mostrarlo en la pantalla. Pero la Administración Picasso se negó.
+                            “Porque la pintura ha
+                            estado expuesta durante los últimos 60 años en el MoMA y evidentemente nunca se hundió con
+                            el Titanic”, justificó
+                            el organismo. Sin embargo Cameron ignoró la prohibición y utilizó el lienzo. Un empeño que,
+                            sin duda, le costaría
+                            una denuncia de los herederos y una elevada cantidad de dinero.
+                        </p>
+                        <p class="fuente-parrafo-negro">
+                            Porque trabajar con Picasso nunca fue fácil, ni cuando ya no estaba. No dejó testamento. Y
+                            el reparto de sus
+                            bienes duró seis años. Un tiempo en el que los siete herederos de entonces se enfrentaron en
+                            más de una ocasión.
+                            Quizá porque como sostiene Mafalda: "Las herencias nunca se reparten sino que se
+                            descuartizan". Aun así, el
+                            acuerdo costó 30 millones de dólares. Un precio relativamente razonable para un artista del
+                            que solo el año
+                            pasado se programaron 34 exposiciones en todo el mundo y que en 2015 fue capaz de vender por
+                            179,4 millones de
+                            dólares un cuadro (Las mujeres de Argel, versión O) que ni por asomo representa lo mejor de
+                            su producción. Dio
+                            igual. Se convirtió en la obra más cara vendida jamás en subasta. Pura abstracción
+                            matemática; el cubismo de la
+                            aritmética del dinero.
+                        </p>
+                        <p class="fuente-parrafo-negro">
+                            Pero esa es la tela que una familia francesa de las afueras de Toulouse encontró en su ático
+                            cuando
+                            reparaba en 2014 una fuga de agua. Oculto tras un muro, no demasiado grueso, estaba un
+                            lienzo oscurecido
+                            por el polvo y el tiempo. Los propietarios de la casa telefonearon a un subastador de la
+                            zona, Marc Labarde,
+                            quien a su vez era socio de un galerista experto en Maestros Antiguos bien conocido en
+                            París: Eric Turquin.
+                            Juntos, con agua y un algodón, limpiaron por encima el cuadro. A primera vista parecía uno
+                            de los muchos lienzos
+                            caravaggistas que circulan por el mercado. Sin embargo un trabajo más concienzudo de
+                            restauración abrió la puerta
+                            a otras miradas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <br><br><br>
+
+    <!-- formulario registro newsletter -->
+    <div class="formNewsLetter"></div>
+
+    <!-- formulario inicioar sesion -->
+    <formIniciarSesion></formIniciarSesion>
+
+    <!-- popover -->
+    <div class="avisoNewsLetter"></div>
+
+    <!-- Pie de la pagina Web -->
+    <footer></footer>
+
+    <script src="{% static 'js/navbar_pie.js' %}"></script>
+    <script src="{% static 'js/Newsletter.js' %}"></script>
+    <script src="{% static 'js/contacto.js' %}"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>

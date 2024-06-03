@@ -1,0 +1,304 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Usuario</title>
+    <link rel="stylesheet" href="{% static 'css/stylePerfilUsuario.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleNavbar.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}    
+</head>
+
+<body>
+
+    <!--Barra de Navegación-->
+    <header>
+
+    </header>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+
+                <!--Foto de perfil-->
+                <div class="d-flex foto-perfil justify-content-center align-items-center">
+                    <img src="{% static 'img/img-perfilUsuario/perfil1.jpg' %}" alt="Perfil Usuario Redonda" class="img-redonda">
+                </div>
+            </div>
+            <div class="col-md-7">
+
+                <!--Cuadro de texto de Datos Personales-->
+                <div class="d-flex align-items-start caja-texto">
+                    <div class="col-md-8">
+                        <div class="margen-parrafo">
+                            <h3 class="fuente-titulo-blanco">DATOS PERSONALES</h3>
+                            <br>
+                            <p class="fuente-parrafo-blanco">
+                                <b>NOMBRE:</b><span class="espacio-parrafo"></span> Daniela Fernández<br>
+                                <b>CORREO:</b><span class="espacio-parrafo"></span> danielafernandez@grupozero.com
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="margen-parrafo" style="text-align: right">
+
+                            <!--Botón Editar Perfil-->
+                            <button type="button" class="fuente-parrafo-blanco boton-editar" data-bs-toggle="modal"
+                                data-bs-target="#ModalEditarPerfil">
+                                <b>Editar perfil</b>
+                            </button>
+
+                            <!--Modal formulario para editar información del perfil-->
+                            <div class="modal" tabindex="-1" id="ModalEditarPerfil" style="text-align: left">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header fuente-titulo-blanco">
+                                            <h5 class="modal-title">EDITAR PERFIL</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body fuente-titulo-negro">
+                                            <div class="mb-3">
+                                                <label for="FormControlNombre" class="form-label">Nombre</label>
+                                                <textarea class="form-control fuente-parrafo" id="FormControlNombre"
+                                                    rows="1"></textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email">Correo:</label>
+                                                <input type="email" id="email" name="email"
+                                                    placeholder="ejemplo@grupozero.com"
+                                                    class="form-control fuente-parrafo-negro">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer fuente-titulo-negro">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn boton-modal">Guardar cambios</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row" style="height: 100px;">
+            <div class="col-md-4"></div>
+            <div class="col-md-7">
+                <div class="d-flex fuente-titulo-negro">
+
+                    <!--Botón Mis Obras-->
+                    <button type="button" class="boton-perfil distancia-botones" data-bs-toggle="modal"
+                        data-bs-target="#ModalMisObras">
+                        <b>MIS OBRAS</b>
+                    </button>
+
+                    <!--Modal tabla Mis Obras-->
+                    <div class="modal" tabindex="-1" id="ModalMisObras">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header fuente-titulo-blanco">
+                                    <h5 class="modal-title">MIS OBRAS</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table fuente-parrafo-negro">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Fecha Publicación</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Imagen</th>
+                                                    <th scope="col">Descripción</th>
+                                                    <th scope="col">Precio (CLP)</th>
+                                                    <th scope="col">Categoría</th>
+                                                    <th scope="col">Estado</th>
+                                                    <th scope="col">Descripción Estado</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">5</th>
+                                                    <td>05/01/2024</td>
+                                                    <td>Hojas de Otoño</td>
+                                                    <td>hojasDeOtono.jpeg</td>
+                                                    <td>Lienzo de 40x40cm, óleo</td>
+                                                    <td>$175.000</td>
+                                                    <td>Pintura</td>
+                                                    <td>Pendiente</td>
+                                                    <td>Esperando revisión</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">4</th>
+                                                    <td>17/09/2023</td>
+                                                    <td>Flores de Verano</td>
+                                                    <td>floresDeVerano.jpeg</td>
+                                                    <td>Lienzo de 30x40cm, óleo</td>
+                                                    <td>$145.000</td>
+                                                    <td>Pintura</td>
+                                                    <td>Aprobado</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>14/07/2023</td>
+                                                    <td>Pensador</td>
+                                                    <td>pensador.jpeg</td>
+                                                    <td>30 cm de altura, acero</td>
+                                                    <td>$100.000</td>
+                                                    <td>Escultura</td>
+                                                    <td>Aprobado</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>30/11/2021</td>
+                                                    <td>Camino</td>
+                                                    <td>camino.jpeg</td>
+                                                    <td>Lienzo de 50x50cm</td>
+                                                    <td>$95.000</td>
+                                                    <td>Pintura</td>
+                                                    <td>Aprobado</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>26/11/2021</td>
+                                                    <td>Camino</td>
+                                                    <td>camino.jpeg</td>
+                                                    <td>Lienzo de 50x50cm</td>
+                                                    <td>$95.000</td>
+                                                    <td>Pintura</td>
+                                                    <td>Rechazado</td>
+                                                    <td>Imagen de baja calidad</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Botón Nueva Obra-->
+                    <button type="button" class="boton-perfil" data-bs-toggle="modal" data-bs-target="#ModalNuevaObra">
+                        <b>NUEVA OBRA</b>
+                    </button>
+
+                    <!--Modal formulario para publicar una Nueva Obra-->
+                    <div class="modal" tabindex="-1" id="ModalNuevaObra">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header fuente-titulo-blanco">
+                                    <h5 class="modal-title">NUEVA OBRA</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="FormControlNombre" class="form-label">Nombre</label>
+                                        <textarea class="form-control" id="FormControlNombre" rows="1"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formFileSm" class="form-label ">Imagen</label>
+                                        <input class="form-control form-control-sm fuente-parrafo-negro" id="formFileSm"
+                                            type="file">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="menuDesplegable">Categoría</label>
+                                        <select id="menuDesplegable" name="menuDesplegable"
+                                            class="fuente-parrafo-negro espacio-parrafo">
+                                            <option value="opcion1">Pintura</option>
+                                            <option value="opcion2">Escultura</option>
+                                            <option value="opcion3">Tejido</option>
+                                            <option value="opcion4">Orfebrería</option>
+                                            <option value="opcion4">Otros</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="FormControlNombre" class="form-label">Descripción</label>
+                                        <textarea class="form-control  fuente-parrafo-negro" id="FormControlNombre"
+                                            rows="10" placeholder="Ingrese una descripción."></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="FormControlPrecio" class="form-label">Precio</label>
+                                        <input type="number" class="form-control fuente-parrafo-negro"
+                                            id="FormControlPrecio" placeholder="999.999" min="0" step="1">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn boton-modal">Enviar solicitud</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- Pie de la pagina Web -->
+    <footer></footer>
+
+    <!-- formulario registro newsletter -->
+    <div class="formNewsLetter"></div>
+
+    <!-- popover -->
+    <div class="avisoNewsLetter"></div>
+
+    <!-- formulario inicioar sesion -->
+    <formIniciarSesion></formIniciarSesion>
+
+    <script src="{% static 'js/navbar_pie.js' %}"></script>
+    <script src="{% static 'js/Newsletter.js' %}"></script>
+    <script src="{% static 'js/contacto.js' %}"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,387 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Administrador</title>
+    <link rel="stylesheet" href="{% static 'css/stylePerfilAdmin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleNavbar.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}   
+
+</head>
+
+<body>
+    
+    <!--Barra de Navegación-->
+    <header>
+
+    </header>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+
+                <!--Foto de perfil-->
+                <div class="d-flex foto-perfil justify-content-center align-items-center">
+                    <img src="{% static 'img/img-perfilAdmin/perfil2.jpg' %}" alt="Perfil Admin Redonda" class="img-redonda">
+                </div>
+            </div>
+            <div class="col-md-7">
+
+                <!--Cuadro de texto de Datos Personales-->
+                <div class="d-flex align-items-start caja-texto">
+                    <div class="col-md-8">
+                        <div class="margen-parrafo">
+                            <h3 class="fuente-titulo-blanco">DATOS PERSONALES</h3>
+                            <br>
+                            <p class="fuente-parrafo-blanco">
+                                <b>NOMBRE:</b><span class="espacio-parrafo"></span> Francisca Pérez<br>
+                                <b>CORREO:</b><span class="espacio-parrafo"></span> franciscaperez@grupozero.com
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="margen-parrafo" style="text-align: right">
+
+                            <!--Botón Editar Perfil-->
+                            <button type="button" class="fuente-parrafo-blanco boton-editar" data-bs-toggle="modal"
+                                data-bs-target="#ModalEditarPerfil">
+                                <b>Editar perfil</b>
+                            </button>
+                            <!--Modal formulario para editar información del perfil-->
+                            <div class="modal" tabindex="-1" id="ModalEditarPerfil" style="text-align: left">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header fuente-titulo-blanco">
+                                            <h5 class="modal-title">EDITAR PERFIL</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body fuente-titulo-negro">
+                                            <div class="mb-3">
+                                                <label for="FormControlNombre" class="form-label">Nombre</label>
+                                                <textarea class="form-control fuente-parrafo" id="FormControlNombre"
+                                                    rows="1"></textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email">Correo:</label>
+                                                <input type="email" id="email" name="email"
+                                                    placeholder="ejemplo@grupozero.com"
+                                                    class="form-control fuente-parrafo-negro">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer fuente-titulo-negro">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn boton-modal">Guardar cambios</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row" style="height: 100px;">
+            <div class="col-md-4"></div>
+            <div class="col-md-7">
+                <div class="d-flex fuente-titulo-negro">
+
+                    <!--Botón Obras-->
+                    <button type="button" class="boton-perfil distancia-botones" data-bs-toggle="modal"
+                        data-bs-target="#ModalObras">
+                        <b>OBRAS</b>
+                    </button>
+
+                    <!--Modal tabla Obras-->
+                    <div class="modal" tabindex="-1" id="ModalObras">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header fuente-titulo-blanco">
+                                    <h5 class="modal-title">OBRAS</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table fuente-parrafo-negro">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Fecha Publicación</th>
+                                                    <th scope="col">Autor</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Imagen</th>
+                                                    <th scope="col">Descripción</th>
+                                                    <th scope="col">Precio (CLP)</th>
+                                                    <th scope="col">Categoría</th>
+                                                    <th scope="col">Estado</th>
+                                                    <th scope="col">Descripción Estado</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">5</th>
+                                                    <td>05/01/2024</td>
+                                                    <td>Daniela Fernández</td>
+                                                    <td>Hojas de Otoño</td>
+                                                    <td>
+                                                        <a href="{% static 'img/img-perfilAdmin/hojasDeOtono.jpg' %}" target="_blank"
+                                                            alt="Foto Hojas de Otoño" class="hipervinculo">
+                                                            hojasDeOtono.jpg
+                                                        </a>
+                                                    </td>
+                                                    <td>Lienzo de 40x40cm, óleo</td>
+                                                    <td>$175.000</td>
+                                                    <td>Pintura</td>
+                                                    <td>
+                                                        <select id="menuDesplegable" name="menuDesplegable"
+                                                            class="fuente-parrafo">
+                                                            <option value="opcion1">Aprobado</option>
+                                                            <option value="opcion2">Rechazado</option>
+                                                            <option value="opcion3" selected>Pendiente</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <textarea class="form-control" id="FormControlNombre"
+                                                            rows="2">Esperando revisión.</textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">4</th>
+                                                    <td>17/09/2023</td>
+                                                    <td>Daniela Fernández</td>
+                                                    <td>Flores de Verano</td>
+                                                    <td>
+                                                        <a href="{% static 'img/img-perfilAdmin/floresDeVerano.jpg' %}" target="_blank"
+                                                            alt="Foto Flores de Verano" class="hipervinculo">
+                                                            floresDeVerano.jpg
+                                                        </a>
+                                                    </td>
+                                                    <td>Lienzo de 30x40cm, óleo</td>
+                                                    <td>$145.000</td>
+                                                    <td>Pintura</td>
+                                                    <td>
+                                                        <select id="menuDesplegable" name="menuDesplegable"
+                                                            class="fuente-parrafo">
+                                                            <option value="opcion1" selected>Aprobado</option>
+                                                            <option value="opcion2">Rechazado</option>
+                                                            <option value="opcion3">Pendiente</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <textarea class="form-control" id="FormControlNombre"
+                                                            rows="2"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>14/07/2023</td>
+                                                    <td>Daniela Fernández</td>
+                                                    <td>Pensador</td>
+                                                    <td>
+                                                        <a href="{% static 'img/img-perfilAdmin/pensador.jpg' %}" target="_blank"
+                                                            alt="Foto Pensador" class="hipervinculo">
+                                                            pensador.jpg
+                                                        </a>
+                                                    </td>
+                                                    <td>30 cm de altura, acero</td>
+                                                    <td>$100.000</td>
+                                                    <td>Escultura</td>
+                                                    <td>
+                                                        <select id="menuDesplegable" name="menuDesplegable"
+                                                            class="fuente-parrafo">
+                                                            <option value="opcion1" selected>Aprobado</option>
+                                                            <option value="opcion2">Rechazado</option>
+                                                            <option value="opcion3">Pendiente</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <textarea class="form-control" id="FormControlNombre"
+                                                            rows="2"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>30/11/2021</td>
+                                                    <td>Daniela Fernández</td>
+                                                    <td>Camino</td>
+                                                    <td>
+                                                        <a href="{% static 'img/img-perfilAdmin/caminoHD.jpg' %}" target="_blank"
+                                                            alt="Foto Camino Aprobada" class="hipervinculo">
+                                                            camino.jpg
+                                                        </a>
+                                                    </td>
+                                                    <td>Lienzo de 50x50cm</td>
+                                                    <td>$95.000</td>
+                                                    <td>Pintura</td>
+                                                    <td>
+                                                        <select id="menuDesplegable" name="menuDesplegable"
+                                                            class="fuente-parrafo">
+                                                            <option value="opcion1" selected>Aprobado</option>
+                                                            <option value="opcion2">Rechazado</option>
+                                                            <option value="opcion3">Pendiente</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <textarea class="form-control" id="FormControlNombre"
+                                                            rows="2"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>26/11/2021</td>
+                                                    <td>Daniela Fernández</td>
+                                                    <td>Camino</td>
+                                                    <td>
+                                                        <a href="{% static 'img/img-perfilAdmin/camino.jpg' %}" target="_blank"
+                                                            alt="Foto Camino Rechazada" class="hipervinculo">
+                                                            camino.jpg
+                                                        </a>
+                                                    </td>
+                                                    <td>Lienzo de 50x50cm</td>
+                                                    <td>$95.000</td>
+                                                    <td>Pintura</td>
+                                                    <td>
+                                                        <select id="menuDesplegable" name="menuDesplegable"
+                                                            class="fuente-parrafo">
+                                                            <option value="opcion1">Aprobado</option>
+                                                            <option value="opcion2" selected>Rechazado</option>
+                                                            <option value="opcion3">Pendiente</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <textarea class="form-control" id="FormControlNombre"
+                                                            rows="2">Imagen de baja calidad.</textarea>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn boton-modal">Guardar cambios</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Botón Usuarios-->
+                    <button type="button" class="boton-perfil" data-bs-toggle="modal" data-bs-target="#ModalNuevaObra">
+                        <b>USUARIOS</b>
+                    </button>
+
+                    <!--Modal tabla con lista de usuarios-->
+                    <div class="modal" tabindex="-1" id="ModalNuevaObra">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header fuente-titulo-blanco">
+                                    <h5 class="modal-title">USUARIOS</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table fuente-parrafo-negro">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Fecha Creación</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Correo</th>
+                                                    <th scope="col">Cantidad Obras</th>
+                                                    <th scope="col">Estado</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>26/11/2021</td>
+                                                    <td>Daniela Fernández</td>
+                                                    <td>danielafernandez@grupozero.com</td>
+                                                    <td>5</td>
+                                                    <td>
+                                                        <select id="menuDesplegable" name="menuDesplegable"
+                                                            class="fuente-parrafo">
+                                                            <option value="opcion1" selected>Activo</option>
+                                                            <option value="opcion2">Inactivo</option>
+                                                            <option value="opcion3">Bloqueado</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn boton-modal">Guardar cambios</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- Pie de la pagina Web -->
+    <footer></footer>
+
+    <!-- formulario registro newsletter -->
+    <div class="formNewsLetter"></div>
+
+    <!-- popover -->
+    <div class="avisoNewsLetter"></div>
+
+    <!-- formulario inicioar sesion -->
+    <formIniciarSesion></formIniciarSesion>
+
+    <script src="{% static 'js/navbar_pie.js' %}"></script>
+    <script src="{% static 'js/Newsletter.js' %}"></script>
+    <script src="{% static 'js/contacto.js' %}"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>

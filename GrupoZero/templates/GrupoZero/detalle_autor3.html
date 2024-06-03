@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Autor</title>
+    <link rel="stylesheet" href="{% static 'css/styleDetalleAutor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleNavbar.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}   
+</head>
+
+<body>
+
+    <!--Barra de Navegación-->
+    <header>
+
+    </header>
+
+    <br>
+
+
+    <!-- Seccion de informacion y descripcion de autor con imagen-->
+    <div class="container-fluid info">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <!--Imagen autor-->
+                <div class="img-autor">
+                    <img src="{% static 'img/img-detalleAutor/SergioRoger.png' %}" alt="img autor" />
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6 caja-texto">
+                <div class="container-fluid">
+                    <div class="contenedor-autor">
+                        <div class="row">
+                            <!--Ficha autor-->
+                            <div class="col-md-4 detalle">
+                                <div class="detalle-autor">
+                                    <h3>
+                                        <center>Ficha del Autor</center>
+                                    </h3>
+                                    <table>
+                                        <tr>
+                                            <th>Nombre:</th>
+                                            <td>Sergio Roger</td>
+                                        </tr>
+                                        <tr>
+                                            <th>N° Obras:</th>
+                                            <td>5</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--Descripción autor-->
+                            <div class="col-md-8">
+                                <div class="desc">
+                                    <h3>
+                                        <center>Sobre el autor</center>
+                                    </h3>
+                                    <p>Sergio Roger, un escultor experto con 20 años de experiencia, destaca en la
+                                        creación de
+                                        esculturas de piedra. Con 40 años de edad, su habilidad artística y destreza
+                                        técnica
+                                        son evidentes en cada obra que elabora. Su pasión por el arte de la escultura se
+                                        refleja en
+                                        piezas únicas que combinan diseño innovador y artesanía excepcional, ganándole
+                                        reconocimiento como uno de los principales escultores de su generación.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+
+
+
+    <!-- Tarjetas de las principales obras del artista -->
+    <div class="gal">
+        <div class="titulo">
+            <h2>
+                <center>Principales Obras</center>
+            </h2>
+        </div>
+
+        <div class="carr">
+            <div class="card">
+                <div class="img">
+                    <a href="#"><img src="{% static 'img/img-detalleAutor/Aborigen.jpg' %}" alt="Aborigen"></a>
+                </div>
+                <center>
+                    <p>Aborigen</p>
+                </center>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <a href="#"><img src="{% static 'img/img-detalleAutor/Madretierra1.jpg' %}" alt="Madre Tierra"></a>
+                </div>
+                <center>
+                    <p>Madre Tierra</p>
+                </center>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <a href="#"><img src="{% static 'img/img-detalleAutor/Pintura2.jpg' %}" alt="Laberinto del Cielo"></a>
+                </div>
+                <center>
+                    <p>Laberinto del Cielo</p>
+                </center>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <a href="#"><img src="{% static 'img/img-detalleObra/ElSabio.jpg' %}" alt="El Sabio"></a>
+                </div>
+                <center>
+                    <p>El Sabio</p>
+                </center>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+
+    <!-- Pie de la pagina Web -->
+    <footer></footer>
+
+    <!-- formulario inicioar sesion -->
+    <formIniciarSesion></formIniciarSesion>
+
+    <script src="{% static 'js/navbar_pie.js' %}"></script>
+    <script src="{% static 'js/contacto.js' %}"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>
