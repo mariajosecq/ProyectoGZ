@@ -1,22 +1,8 @@
+{% extends 'GrupoZero/base.html' %}
 {% load static %}
+{% block title%} blog {% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-    <link rel="stylesheet" href="{% static 'css/styleBlog.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styleNavbar.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styleNewsletter.css' %}">
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}   
-</head>
-
-    <!--Barra de Navegación-->
-    <header></header>
+{% block content %}
 
     <br><br><br><br>
 
@@ -195,26 +181,5 @@
     </div>
     <br><br><br>
 
-    <!-- formulario registro newsletter -->
-    <div class="formNewsLetter"></div>
 
-    <!-- formulario inicioar sesion -->
-    <formIniciarSesion></formIniciarSesion>
-
-    <!-- popover -->
-    <div class="avisoNewsLetter"></div>
-
-    <!-- Pie de la pagina Web -->
-    <footer></footer>
-
-    <script src="{% static 'js/navbar_pie.js' %}"></script>
-    <script src="{% static 'js/Newsletter.js' %}"></script>
-    <script src="{% static 'js/contacto.js' %}"></script>
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    {% block content %}
-    {% endblock %}
-</body>
-
-</html>
+{% endblock %}

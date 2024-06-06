@@ -29,7 +29,7 @@
     background-color: #e3e3e3;
 }
 
-.detalle {
+.detalleautor {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: 1px solid #1c1c1c;
@@ -71,16 +71,16 @@
 }
 
 /* Descripcion e imagen del autor*/
-.detalle .detalle-autor {
+.detalleautor .detalle-autor {
     color: #e1e1e1;
     padding: 5px;
     margin-top: 20px;
 }
 
-.detalle .detalle-autor td {
+.detalleautor .detalle-autor td {
     padding-left: 10px;
 }
-.detalle .detalle-autor h3 {
+.detalleautor .detalle-autor h3 {
     text-transform: uppercase;
     font-family: 'PoppinsBold';
 }

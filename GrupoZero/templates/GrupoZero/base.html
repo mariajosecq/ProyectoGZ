@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="{% static 'css/styleNavbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/styleNewsletter.css' %}">
     <link rel="stylesheet" href="{% static 'css/stylePrincipal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stylePerfilUsuario.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stylePerfilAdmin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleDetalleObra.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleDetalleAutor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleBlog.css' %}">
+
+    
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}   
@@ -71,10 +78,10 @@
         </div>
     </nav>
     
-    <div>
+    
         {% block content %}
         {% endblock %}
-    </div>
+    
 
     <div class="pie">
         <div class="imagenPie">

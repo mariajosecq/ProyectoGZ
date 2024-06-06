@@ -1,25 +1,11 @@
+{% extends 'GrupoZero/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title%} perfil_usuario {% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Usuario</title>
-    <link rel="stylesheet" href="{% static 'css/stylePerfilUsuario.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styleNavbar.css' %}">
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}    
-</head>
+{% block content %}
 
-<body>
 
-    <!--Barra de Navegación-->
-    <header>
-
-    </header>
 
     <br>
     <br>
@@ -278,27 +264,6 @@
     <br>
     <br>
 
-    <!-- Pie de la pagina Web -->
-    <footer></footer>
 
-    <!-- formulario registro newsletter -->
-    <div class="formNewsLetter"></div>
+{% endblock %}
 
-    <!-- popover -->
-    <div class="avisoNewsLetter"></div>
-
-    <!-- formulario inicioar sesion -->
-    <formIniciarSesion></formIniciarSesion>
-
-    <script src="{% static 'js/navbar_pie.js' %}"></script>
-    <script src="{% static 'js/Newsletter.js' %}"></script>
-    <script src="{% static 'js/contacto.js' %}"></script>
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    {% block content %}
-    {% endblock %}
-
-</body>
-
-</html>
