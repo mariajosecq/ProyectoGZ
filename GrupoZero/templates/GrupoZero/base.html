@@ -132,7 +132,8 @@
     </div>
 
     <!--Formulario para iniciar sesion y Crear cuenta-->
-    <form class="form" novalidate>
+    <form method="post" action="{% url 'registro_inicio_sesion' %}" class="form" novalidate>
+        {% csrf_token %}
         <div class="tab-header">
             <div class="active">Crear Cuenta</div>
             <div>Iniciar Sesion</div>
@@ -140,13 +141,13 @@
         <div class="tab-cont">
             <div class="tab-body active">
                 <div class="form-ele">
-                    <input type="email" placeholder="Email" class="newmail">
+                    <input type="email" placeholder="Email" class="newmail" name="email_registro">
                 </div>
                 <div class="form-ele">
-                    <input type="text" placeholder="Nombre" class="newname">
+                    <input type="text" placeholder="Nombre" class="newname" name="nombre_registro">
                 </div>
                 <div class="form-ele">
-                    <input type="password" placeholder="Contraseña" class="newpass">
+                    <input type="password" placeholder="Contraseña" class="newpass" name="contrasena_registro">
                 </div>
                 <div class="form-ele">
                     <button type="submit" class="btn-crear">Crear Cuenta</button>
@@ -157,10 +158,10 @@
             </div>
             <div class="tab-body" dir="tab-body-accs">
                 <div class="form-ele">
-                    <input type="email" placeholder="Email" class="email">
+                    <input type="email" placeholder="Email" class="email" name="email_inicio_sesion">
                 </div>
                 <div class=" form-ele">
-                    <input type="password" placeholder="Contraseña" class="pass">
+                    <input type="password" placeholder="Contraseña" class="pass" name="contrasena_inicio_sesion">
                 </div>
                 <div class="form-ele">
                     <input type="checkbox" id="recordar">
