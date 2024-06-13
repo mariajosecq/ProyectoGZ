@@ -1,29 +1,3 @@
-const formNewsLetter = document.querySelector('.formNewsLetter');
-formNewsLetter.innerHTML = `
-<div class="formNewsLetter cerrarform">
-<div class="imagen"></div>
-<form id="form" novalidate class="formulario">
-    <div class="cerrar"><a href="">x</a></div>
-    <h3>Ingresa tus datos y <br> mantente informado</h3>
-    <div class="newsletterinput">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" placeholder=" Ingrese su nombre">
-    </div>
-    <div class="newsletterinput">
-        <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" placeholder=" Ingrese su apellido">
-    </div>
-    <div class="newsletterinput">
-        <label for="email">Email:</label>
-        <input type="email" id="email" placeholder=" Ingrese su email">
-    </div>
-    <div class="newsletterinput">
-        <button type="submit" id="btn-acceder">Unirse</button>
-    </div>
-</form>
-</div>
-`;
-
 if (window.location.pathname === "/blog.html") {
     // Ocultar el popover
     document.querySelector(".avisoNewsLetter").style.display = "none";

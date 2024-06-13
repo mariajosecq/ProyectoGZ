@@ -6,14 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Base</title>
-    <link rel="stylesheet" href="{% static 'css/styleNavbar.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styleNewsletter.css' %}">
-    <link rel="stylesheet" href="{% static 'css/stylePrincipal.css' %}">
-    <link rel="stylesheet" href="{% static 'css/stylePerfilUsuario.css' %}">
-    <link rel="stylesheet" href="{% static 'css/stylePerfilAdmin.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styleDetalleObra.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styleDetalleAutor.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styleBlog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     
     {% load bootstrap5 %}
@@ -132,7 +125,8 @@
     </div>
 
     <!--Formulario para iniciar sesion y Crear cuenta-->
-    <form class="form" novalidate>
+    <form method="post" action="{% url 'registro_inicio_sesion' %}" class="form" novalidate>
+        {% csrf_token %}
         <div class="tab-header">
             <div class="active">Crear Cuenta</div>
             <div>Iniciar Sesion</div>
@@ -140,13 +134,13 @@
         <div class="tab-cont">
             <div class="tab-body active">
                 <div class="form-ele">
-                    <input type="email" placeholder="Email" class="newmail">
+                    <input type="email" placeholder="Email" class="newmail" name="email_registro">
                 </div>
                 <div class="form-ele">
-                    <input type="text" placeholder="Nombre" class="newname">
+                    <input type="text" placeholder="Nombre" class="newname" name="nombre_registro">
                 </div>
                 <div class="form-ele">
-                    <input type="password" placeholder="Contraseña" class="newpass">
+                    <input type="password" placeholder="Contraseña" class="newpass" name="contrasena_registro">
                 </div>
                 <div class="form-ele">
                     <button type="submit" class="btn-crear">Crear Cuenta</button>
@@ -157,10 +151,10 @@
             </div>
             <div class="tab-body" dir="tab-body-accs">
                 <div class="form-ele">
-                    <input type="email" placeholder="Email" class="email">
+                    <input type="email" placeholder="Email" class="email" name="email_inicio_sesion">
                 </div>
                 <div class=" form-ele">
-                    <input type="password" placeholder="Contraseña" class="pass">
+                    <input type="password" placeholder="Contraseña" class="pass" name="contrasena_inicio_sesion">
                 </div>
                 <div class="form-ele">
                     <input type="checkbox" id="recordar">
@@ -180,6 +174,32 @@
             </div>
         </div>
     </form>
+
+    <!--NEWSLETTER-->
+
+    <div class="formNewsLetter cerrarform-newsletter">
+        <div class="imagen-newsletter"></div>
+        <form id="form" novalidate class="formulario-nl">
+            <div class="cerrar-nl"><a href="">x</a></div>
+            <h3>Ingresa tus datos y <br> mantente informado</h3>
+            <div class="newsletterinput">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" placeholder=" Ingrese su nombre">
+            </div>
+            <div class="newsletterinput">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" placeholder=" Ingrese su apellido">
+            </div>
+            <div class="newsletterinput">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder=" Ingrese su email">
+            </div>
+            <div class="newsletterinput">
+                <button type="submit" id="btn-acceder">Unirse</button>
+            </div>
+        </form>
+    </div>
+
 
     <script src="{% static 'js/navbar_pie.js' %}"></script>
     <script src="{% static 'js/Newsletter.js' %}"></script>
