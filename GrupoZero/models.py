@@ -27,12 +27,20 @@ class Categoria(models.Model):
     def __self__(self):
         return str(self.cod_categoria)
     
+class EstadoObra(models.Model):
+    cod_estado_obra = models.IntegerField(primary_key=True)
+    nombre_estado_obra = models.CharField(max_length=20)
+
+    def __str__(self):
+        return str(self.cod_estado_obra)
+
 class Obra(models.Model):
     cod_obra = models.IntegerField(primary_key=True)
     nombre_obra = models.CharField(max_length=20)
     imagen = models.ImageField(upload_to=user_directory_path)
     descripcion = models.CharField(max_length=500)
     precio = models.IntegerField()
+    estado = models.ForeignKey('EstadoObra',on_delete=models.CASCADE, to_field='cod_estado_obra', db_column='cod_estado_obra', null=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field='id')
     categoria = models.ForeignKey('Categoria',on_delete=models.CASCADE, to_field='cod_categoria', db_column='cod_categoria')
 
@@ -47,3 +55,4 @@ class ImagenObra(models.Model):
     
     def __str__(self):
         return str(self.cod_imagen_obra)
+
