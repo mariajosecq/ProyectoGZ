@@ -12,5 +12,5 @@ urlpatterns = [
     path('detalle_autor3.html', views.detalle_autor3, name='detalle_autor3'),
     path('blog.html', views.blog, name='blog'),
     path('base.html', views.base, name='base'),
-    path('registro-inicio-sesion/', views.registro_inicio_sesion, name='registro_inicio_sesion'),
+    path('registro-inicio-sesion', views.registro_inicio_sesion, name='registro_inicio_sesion'),
 ]

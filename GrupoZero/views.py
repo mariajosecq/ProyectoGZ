@@ -1,3 +1,5 @@
+import time
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -42,16 +44,31 @@ def base(request):
 
 def registro_inicio_sesion(request):
     if request.method == 'POST':
+        print(request.POST)
+        accion = request.POST.get('accion', None)
         # Verifica si se está realizando un registro o un inicio de sesión
-        if 'registro' in request.POST:
+        if accion == 'registro':
+            print("'Registro' está en request.POST ")
             # Registro de nuevo usuario
             email = request.POST.get('email_registro')
-            username = request.POST.get('nombre_registro')
+            nombre_completo = request.POST.get('nombre_registro')
             password = request.POST.get('contrasena_registro')
-            user = User.objects.create_user(username=username, email=email, password=password)
+
+            # Dividir el nombre completo en nombre y apellido
+            nombre_apellido = nombre_completo.rsplit(maxsplit=1)  # Divide solo en la última aparición del espacio
+
+            if len(nombre_apellido) == 2:
+                first_name, last_name = nombre_apellido
+            else:
+                first_name = nombre_completo
+                last_name = ''
+
+            user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
+
             # Redirige al usuario a la página de éxito después del registro
-            return redirect('pagina_exito')
-        elif 'inicio_sesion' in request.POST:
+            return redirect('')
+        elif accion == 'inicio_sesion':
+            print("'Inicio_sesion' está en request.POST ")
             # Inicio de sesión de usuario existente
             email = request.POST.get('email_inicio_sesion')
             password = request.POST.get('contrasena_inicio_sesion')
@@ -59,11 +76,14 @@ def registro_inicio_sesion(request):
             if user is not None:
                 login(request, user)
                 # Redirige al usuario a la página de éxito después del inicio de sesión
-                return redirect('pagina_exito')
+                return redirect('')
             else:
-                # El inicio de sesión falló, puedes agregar un mensaje de error
-                # y renderizar nuevamente el formulario de inicio de sesión
-                return render(request, 'GrupoZero/base.html', {'error': 'Inicio de sesión fallido'})
+                # El inicio de sesión falló, renderiza nuevamente el formulario con un mensaje de error
+                
+                return render(request, 'principal', {'error': 'Inicio de sesión fallido'})
+        else:
+            print("No se registró ninguna acción. Ni 'registro', ni 'inicio_sesion'")
     
     # Si el método no es POST, simplemente renderiza el formulario
-    return render(request, 'GrupoZero/base.html')
+    time.sleep(10)
+    return render(request, 'GrupoZero/blog.html')

@@ -1,5 +1,6 @@
 // Abrir, cerrar y cambiar el login
 document.addEventListener("DOMContentLoaded", function () {
+
     let tabpanes = document.getElementsByClassName("tab-header")[0].getElementsByTagName("div");
 
     //abrir, cerrar y cambiar el login
@@ -39,47 +40,57 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Validación del formulario de Crear Cuenta
-    const formCrearCuenta = document.querySelector('.tab-body.active');
-    const btnCrearCuenta = formCrearCuenta.querySelector('.btn-crear');
-    const inputFieldsCrearCuenta = formCrearCuenta.querySelectorAll('input');
-    inputFieldsCrearCuenta.forEach(input => {
-        input.addEventListener('input', function () {
-            input.classList.remove('placeholder-red');
-        });
-    });
-    inputFieldsCrearCuenta.forEach(input => {
-        input.addEventListener('blur', function () {
-            validateField(input);
-        });
-    });
+    const btnCrearCuenta = document.querySelector('.btn-crear');
+    
     btnCrearCuenta.addEventListener('click', function (event) {
         event.preventDefault();
         console.log('Botón "Crear Cuenta" clicado');
+
+        // Encontrar el formulario padre del botón clicado
+        const formCrearCuenta = this.closest('form');
+
         const emailFieldCrearCuenta = formCrearCuenta.querySelector('.newmail');
         const nameFieldCrearCuenta = formCrearCuenta.querySelector('.newname');
         const passFieldCrearCuenta = formCrearCuenta.querySelector('.newpass');
+
+        // Agregar eventos de input y blur solo para los campos de este formulario
+        const inputFieldsCrearCuenta = formCrearCuenta.querySelectorAll('input');
+        inputFieldsCrearCuenta.forEach(input => {
+            input.addEventListener('input', function () {
+                input.classList.remove('placeholder-red');
+            });
+            input.addEventListener('blur', function () {
+                validateField(input);
+            });
+        });
+
         validateAndSubmitForm(emailFieldCrearCuenta, nameFieldCrearCuenta, passFieldCrearCuenta, formCrearCuenta);
     });
 
     // Validación del formulario de Acceder
-    const formAcceder = document.querySelector('.tab-body[dir="tab-body-accs"]');
-    const btnAcceder = formAcceder.querySelector('.btn-acceder');
-    const inputFieldsAcceder = formAcceder.querySelectorAll('input');
-    inputFieldsAcceder.forEach(input => {
-        input.addEventListener('input', function () {
-            input.classList.remove('placeholder-red');
-        });
-    });
-    inputFieldsAcceder.forEach(input => {
-        input.addEventListener('blur', function () {
-            validateField(input);
-        });
-    });
+    const btnAcceder = document.querySelector('.btn-acceder');
+    
     btnAcceder.addEventListener('click', function (event) {
         event.preventDefault();
         console.log('Botón "Acceder" clicado');
+
+        // Encontrar el formulario padre del botón clicado
+        const formAcceder = this.closest('form');
+
         const emailFieldAcceder = formAcceder.querySelector('.email');
         const passFieldAcceder = formAcceder.querySelector('.pass');
+
+        // Agregar eventos de input y blur solo para los campos de este formulario
+        const inputFieldsAcceder = formAcceder.querySelectorAll('input');
+        inputFieldsAcceder.forEach(input => {
+            input.addEventListener('input', function () {
+                input.classList.remove('placeholder-red');
+            });
+            input.addEventListener('blur', function () {
+                validateField(input);
+            });
+        });
+
         validateAndSubmitForm(emailFieldAcceder, null, passFieldAcceder, formAcceder);
     });
 
@@ -133,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (emailField.classList.contains('valid') && (nameField ? nameField.classList.contains('valid') : true) && passField.classList.contains('valid')) {
             console.log('Todos los campos son válidos, enviando formulario');
+            console.log(form);
             form.submit();
         } else {
             console.log('Hay campos inválidos, el formulario no se enviará.');
@@ -151,4 +163,10 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log('Campo inválido después de blur:', input.className);
         }
     }
+
+    
 });
+
+function setAccion(accion) {
+    document.getElementById('accion').value = accion;
+}

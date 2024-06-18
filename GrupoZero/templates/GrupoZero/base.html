@@ -127,6 +127,8 @@
     <!--Formulario para iniciar sesion y Crear cuenta-->
     <form method="post" action="{% url 'registro_inicio_sesion' %}" class="form" novalidate>
         {% csrf_token %}
+        <input type="hidden" name="accion" id="accion" value="">
+
         <div class="tab-header">
             <div class="active">Crear Cuenta</div>
             <div>Iniciar Sesion</div>
@@ -143,13 +145,13 @@
                     <input type="password" placeholder="Contraseña" class="newpass" name="contrasena_registro">
                 </div>
                 <div class="form-ele">
-                    <button type="submit" class="btn-crear">Crear Cuenta</button>
+                    <button type="submit" class="btn-crear" onclick="setAccion('registro')">Crear Cuenta</button>
                 </div>
                 <div class="form-ele">
                     <div class="cerrar-login">&times;</div>
                 </div>
             </div>
-            <div class="tab-body" dir="tab-body-accs">
+            <div class="tab-body" dir="tab-body-accs" >
                 <div class="form-ele">
                     <input type="email" placeholder="Email" class="email" name="email_inicio_sesion">
                 </div>
@@ -161,7 +163,7 @@
                     <label for="recordarme">Recordarme</label>
                 </div>
                 <div class="form-ele">
-                    <button type="submit" class="btn-acceder">Ingresar</button>
+                    <button type="submit" class="btn-acceder" onclick="setAccion('inicio_sesion')">Ingresar</button>
                 </div>
                 <div class="form-ele">
                     <a href="#">
@@ -202,7 +204,7 @@
 
 
     <script src="{% static 'js/navbar_pie.js' %}"></script>
-    <script src="{% static 'js/Newsletter.js' %}"></script>
+    <!--<script src="{% static 'js/Newsletter.js' %}"></script>-->
     <script src="{% static 'js/contacto.js' %}"></script>
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
