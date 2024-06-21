@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
+from .models import PerfilUsuario, Rol
+
 # Create your views here.
 
 def principal(request):
@@ -64,9 +66,14 @@ def registro_inicio_sesion(request):
                 last_name = ''
 
             user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
+            rol=Rol.objects.get(cod_rol=2)
+            perfil_usuario = PerfilUsuario( user=user, rol=rol) 
+            perfil_usuario.save()
 
             # Redirige al usuario a la página de éxito después del registro
-            return redirect('')
+            if perfil_usuario.get(rol) == 2:
+                return redirect('perfil_usuario')
+            
         elif accion == 'inicio_sesion':
             print("'Inicio_sesion' está en request.POST ")
             # Inicio de sesión de usuario existente
@@ -74,16 +81,22 @@ def registro_inicio_sesion(request):
             password = request.POST.get('contrasena_inicio_sesion')
             user = authenticate(request, username=email, password=password)
             if user is not None:
-                login(request, user)
-                # Redirige al usuario a la página de éxito después del inicio de sesión
-                return redirect('')
+                login(request, user)                
+                #Obtener el objeto de tipo PerfilUsuario asociado al user recién autenticado
+                perfil_usuario = PerfilUsuario.objects.get(user=user)
+                #Obtener el rol de ese objeto de tipo PerfilUsuario
+                rol = perfil_usuario.rol.cod_rol
+                # Redirige al usuario a la página correspondiente a su perfil después del inicio de sesión
+                if rol==1:
+                    return redirect('perfil_admin')
+                elif rol ==2:
+                    return redirect('perfil_usuario')
             else:
                 # El inicio de sesión falló, renderiza nuevamente el formulario con un mensaje de error
                 
-                return render(request, 'principal', {'error': 'Inicio de sesión fallido'})
+                return render(request, 'GrupoZero/', {'error': 'Inicio de sesión fallido'})
         else:
             print("No se registró ninguna acción. Ni 'registro', ni 'inicio_sesion'")
     
     # Si el método no es POST, simplemente renderiza el formulario
-    time.sleep(10)
-    return render(request, 'GrupoZero/blog.html')
+    return render(request, 'GrupoZero/')
