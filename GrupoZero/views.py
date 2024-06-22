@@ -109,10 +109,10 @@ def registro_inicio_sesion(request):
             else:
                 # El inicio de sesión falló, renderiza nuevamente el formulario con un mensaje de error
                 
-                return render(request, 'GrupoZero/inicio', {'error': 'Inicio de sesión fallido'})
+                return render(request, 'GrupoZero/principal.html', {'error': 'Inicio de sesión fallido'})
         else:
             print("No se registró ninguna acción. Ni 'registro', ni 'inicio_sesion'")
-            return render(request, 'GrupoZero/inicio', {'error': 'Inicio de sesión fallido'})
+            return render(request, 'GrupoZero/principal.html', {'error': 'Inicio de sesión fallido'})
     else:
         # Si el método no es POST, simplemente renderiza el formulario
-        return render(request, 'GrupoZero/inicio')
+        return render(request, 'GrupoZero/principal.html')
