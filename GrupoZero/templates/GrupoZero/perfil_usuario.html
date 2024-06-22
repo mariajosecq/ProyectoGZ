@@ -40,11 +40,17 @@
                             <h3 class="fuente-titulo-blanco">DATOS PERSONALES</h3>
                             <br>
                             <p class="fuente-parrafo-blanco">
-                                <b>NOMBRE:</b><span class="espacio-parrafo"></span> Daniela Fernández<br>
-                                <b>CORREO:</b><span class="espacio-parrafo"></span> danielafernandez@grupozero.com<br>
-                                <b>DESCRIPCION:</b><span class="espacio-parrafo"></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                {% if user.is_authenticated %}
+                                   <b>NOMBRE:</b><span class="espacio-parrafo"></span> {{ user.get_full_name }}<br>
+                                    <b>CORREO:</b><span class="espacio-parrafo"></span> {{ user.email }}<br>
+                                    <b>DESCRIPCION:</b><span class="espacio-parrafo"></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                                  Dolorum nisi beatae illo at culpa velit accusamus. Laboriosam cupiditate deleniti nam tempora, reiciendis iste rerum
                                  voluptatum quod. Sit possimus iste quam?
+                                {% else %}
+                                    <b>NOMBRE:</b><span class="espacio-parrafo"></span> <br>
+                                    <b>CORREO:</b><span class="espacio-parrafo"></span> <br>
+                                    <b>DESCRIPCION:</b><span class="espacio-parrafo"></span> 
+                                {% endif %}                                
                             </p>
                         </div>
                     </div>
@@ -69,13 +75,13 @@
                                         <div class="modal-body fuente-titulo-negro">
                                             <div class="mb-3">
                                                 <label for="FormControlNombre" class="form-label">Nombre</label>
-                                                <textarea class="form-control fuente-parrafo" id="FormControlNombre"
-                                                    rows="1"></textarea>
+                                                <textarea class="form-control fuente-parrafo-negro" id="FormControlNombre"
+                                                placeholder="{{ user.get_full_name }}" rows="1"></textarea>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="email">Correo:</label>
                                                 <input type="email" id="email" name="email"
-                                                    placeholder="ejemplo@grupozero.com"
+                                                    placeholder="{{ user.email }}"
                                                     class="form-control fuente-parrafo-negro">
                                             </div>
                                             <div class="mb-3">
@@ -84,7 +90,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="descripcion">Descripción:</label>
-                                                <textarea id="descripcion" name="descr" placeholder="Describe aquí" class="form-control fuente-parrafo-negro" rows="4"></textarea>
+                                                <textarea id="descripcion" name="descr" placeholder="Nueva descripción" class="form-control fuente-parrafo-negro" rows="4"></textarea>
                                             </div>
                                             
 
