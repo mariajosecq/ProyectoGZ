@@ -24,9 +24,13 @@
             <!--Foto de perfil-->
             <div class="d-flex foto-perfil justify-content-center align-items-center">
                 {% if user.is_authenticated %}
-                <img src="{% obtener_img_perfil user %}" alt="Perfil Usuario Redonda" class="img-redonda">
+                {% if perfil_usuario.imagen %}
+                <img src={{perfil_usuario.imagen.url}} alt="esto deberia estar mostrando la foto" class="img-redonda">
                 {% else %}
-                <img src="" alt="Perfil Usuario Redonda" class="img-redonda">
+                <img src="/path/to/default/image.jpg" alt="error numero 1" class="img-redonda">
+                {% endif %}
+                {% else %}
+                <img src="/path/to/default/image.jpg" alt="error numero 2" class="img-redonda">
                 {% endif %}
             </div>
         </div>

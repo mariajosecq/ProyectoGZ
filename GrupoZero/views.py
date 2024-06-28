@@ -177,4 +177,10 @@ def get_desc(request):
         'descripcion_perfil': descripcion,
     }
 
-    return render(request, 'GrupoZero/perfil_usuario.html', context)  
+    return render(request, 'GrupoZero/perfil_usuario.html', context) 
+
+
+@login_required
+def perfil_usuario(request):
+    perfil_usuario = get_object_or_404(PerfilUsuario, user=request.user)
+    return render(request, 'GrupoZero/perfil_usuario.html', {'perfil_usuario': perfil_usuario})
