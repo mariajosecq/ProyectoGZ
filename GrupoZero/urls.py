@@ -1,6 +1,9 @@
-#from django.conf.urls import url
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
 
 urlpatterns = [
     path('inicio', views.principal, name='inicio'),
@@ -13,4 +16,11 @@ urlpatterns = [
     path('blog', views.blog, name='blog'),
     path('base', views.base, name='base'),
     path('registro-inicio-sesion', views.registro_inicio_sesion, name='registro_inicio_sesion'),
+    path('editar_perfil/', views.editar_perfil, name='editar_perfil'),
+    path('get_desc/', views.get_desc, name='get_desc'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('admin/', admin.site.urls, name='admin'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

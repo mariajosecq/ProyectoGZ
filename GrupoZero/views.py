@@ -1,7 +1,9 @@
 import time
 
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
 from .models import PerfilUsuario, Rol
@@ -116,3 +118,63 @@ def registro_inicio_sesion(request):
     else:
         # Si el método no es POST, simplemente renderiza el formulario
         return render(request, 'GrupoZero/principal.html')
+    
+
+@login_required
+def editar_perfil(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        descripcion = request.POST.get('descr')
+        imagen = request.FILES.get('imagen')
+
+        user = request.user
+
+        if nombre:
+            nombre_split = nombre.split()
+            if len(nombre_split) > 1:
+                user.first_name = nombre_split[0]
+                user.last_name = ' '.join(nombre_split[1:])
+            else:
+                user.first_name = nombre_split[0]
+                user.last_name = ''
+            
+        if email:
+            user.email = email
+            user.username = email
+        
+        if password:
+            user.set_password(password)
+        
+        user.save()
+
+        perfilUsuario, created = PerfilUsuario.objects.get_or_create(user=user)
+        if descripcion:
+            perfilUsuario.descripcion = descripcion
+        if imagen:
+            perfilUsuario.imagen = imagen
+        
+        perfilUsuario.save()
+
+        return redirect('perfil_usuario')  # Redirigir a una página de perfil después de la actualización
+    
+
+    return render(request, 'GrupoZero/perfil_usuario.html')
+
+
+@login_required
+def get_desc(request):
+    user = request.user
+    try:
+        miau = PerfilUsuario.objects.get(user=user)
+        descripcion = miau.descripcion if miau.descripcion else "No hay descripción disponible."
+    except PerfilUsuario.DoesNotExist:
+        descripcion = "No hay descripción disponible."
+
+    context = {
+        'user': user,
+        'descripcion_perfil': descripcion,
+    }
+
+    return render(request, 'GrupoZero/perfil_usuario.html', context)  
