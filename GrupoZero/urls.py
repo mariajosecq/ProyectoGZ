@@ -9,7 +9,7 @@ urlpatterns = [
     path('perfil_usuario', views.perfil_usuario, name='perfil_usuario'),
     path('perfil_admin', views.perfil_admin, name='perfil_admin'),
     path('detalle_obra', views.detalle_obra, name='detalle_obra'),
-    path('detalle_autor', views.detalle_autor, name='detalle_autor'),
+    path('detalle_autor/<str:username>/', views.detalle_autor, name='detalle_autor'),
     path('detalle_autor2', views.detalle_autor2, name='detalle_autor2'),
     path('detalle_autor3', views.detalle_autor3, name='detalle_autor3'),
     path('blog', views.blog, name='blog'),
@@ -18,4 +18,5 @@ urlpatterns = [
     path('editar_perfil/', views.editar_perfil, name='editar_perfil'),
     path('get_desc/', views.get_desc, name='get_desc'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('get_usuario_artista/', views.get_usuario_artista, name='get_usuario_artista'),
 ]

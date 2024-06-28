@@ -4,112 +4,107 @@
 
 {% block content %}
 
-    <br>
+<br>
 
 
-    <!-- Seccion de informacion y descripcion de autor con imagen-->
-    <div class="container-fluid info-autor">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">
-                <!--Imagen autor-->
-                <div class="img-autor">
-                    <img src="{% static 'img/img-perfilUsuario/perfil1.jpg' %}" alt="img autor" />
-                </div>
+<!-- Seccion de informacion y descripcion de autor con imagen-->
+<div class="container-fluid info-autor">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <!--Imagen autor-->
+            <div class="img-autor">
+                <img src="{% if perfil_usuario.imagen %}{{ perfil_usuario.imagen.url }}{% else %}{% static '' %}{% endif %}"
+                    alt="Imagen de {{ perfil_usuario.user.get_full_name }}">
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-6 caja-texto-autor">
-                <div class="container-fluid">
-                    <div class="contenedor-autor">
-                        <div class="row">
-                            <!--Ficha autor-->
-                            <div class="col-md-4 detalleautor">
-                                <div class="detalle-autor">
-                                    <h3>
-                                        <center>Ficha del Autor</center>
-                                    </h3>
-                                    <table>
-                                        <tr>
-                                            <th>Nombre:</th>
-                                            <td>Daniela Fernández</td>
-                                        </tr>
-                                        <tr>
-                                            <th>N° Obras:</th>
-                                            <td>5</td>
-                                        </tr>
-                                    </table>
-                                </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-6 caja-texto-autor">
+            <div class="container-fluid">
+                <div class="contenedor-autor">
+                    <div class="row">
+                        <!--Ficha autor-->
+                        <div class="col-md-4 detalleautor">
+                            <div class="detalle-autor">
+                                <h3>
+                                    <center>Ficha del Autor</center>
+                                </h3>
+                                <table>
+                                    <tr>
+                                        <th>Nombre:</th>
+                                        <td>{{ perfil_usuario.user.get_full_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>N° Obras:</th>
+                                        <td>5</td>
+                                    </tr>
+                                </table>
                             </div>
-                            <!--Descripción autor-->
-                            <div class="col-md-8">
-                                <div class="desc-autor">
-                                    <h3>
-                                        <center>Sobre el autor</center>
-                                    </h3>
-                                    <p>Daniela Fernández, una pintora experta con 20 años de experiencia, destaca en la
-                                        creación de
-                                        pinturas en óleo. Con 40 años de edad, su habilidad artística y destreza técnica
-                                        son evidentes en cada obra que elabora. Su pasión por el arte de la pintura se
-                                        refleja en
-                                        piezas únicas que combinan color y estilo, ganándole
-                                        reconocimiento como uno de las principales pintoras de su generación.</p>
-                                </div>
+                        </div>
+                        <!--Descripción autor-->
+                        <div class="col-md-8">
+                            <div class="desc-autor">
+                                <h3>
+                                    <center>Sobre el autor</center>
+                                </h3>
+                                <p>{{ perfil_usuario.descripcion }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"></div>
         </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+
+
+<!-- Tarjetas de las principales obras del artista -->
+<div class="gal-autor">
+    <div class="titulo">
+        <h2>
+            <center>Principales Obras</center>
+        </h2>
     </div>
 
-
-
-    <!-- Tarjetas de las principales obras del artista -->
-    <div class="gal-autor">
-        <div class="titulo">
-            <h2>
-                <center>Principales Obras</center>
-            </h2>
+    <div class="carr-autor">
+        <div class="card-autor">
+            <div class="img">
+                <a href="#"><img src="{% static 'img/img-perfilAdmin/floresDeVerano.jpg' %}" alt=""></a>
+            </div>
+            <center>
+                <p>Flores de Verano</p>
+            </center>
         </div>
-
-        <div class="carr-autor">
-            <div class="card-autor">
-                <div class="img">
-                    <a href="#"><img src="{% static 'img/img-perfilAdmin/floresDeVerano.jpg' %}" alt=""></a>
-                </div>
-                <center>
-                    <p>Flores de Verano</p>
-                </center>
+        <div class="card-autor">
+            <div class="img">
+                <a href="#"><img src="{% static 'img/img-perfilAdmin/hojasDeOtono.jpg' %}" alt=""></a>
             </div>
-            <div class="card-autor">
-                <div class="img">
-                    <a href="#"><img src="{% static 'img/img-perfilAdmin/hojasDeOtono.jpg' %}" alt=""></a>
-                </div>
-                <center>
-                    <p>Hojas de Otoño</p>
-                </center>
+            <center>
+                <p>Hojas de Otoño</p>
+            </center>
+        </div>
+        <div class="card-autor">
+            <div class="img">
+                <a href="#"><img src="{% static 'img/img-perfilAdmin/pensador.jpg' %}" alt=""></a>
             </div>
-            <div class="card-autor">
-                <div class="img">
-                    <a href="#"><img src="{% static 'img/img-perfilAdmin/pensador.jpg' %}" alt=""></a>
-                </div>
-                <center>
-                    <p>Pensador</p>
-                </center>
+            <center>
+                <p>Pensador</p>
+            </center>
+        </div>
+        <div class="card-autor">
+            <div class="img">
+                <a href="#"><img src="{% static 'img/img-perfilAdmin/caminoHD.jpg' %}" alt=""></a>
             </div>
-            <div class="card-autor">
-                <div class="img">
-                    <a href="#"><img src="{% static 'img/img-perfilAdmin/caminoHD.jpg' %}" alt=""></a>
-                </div>
-                <center>
-                    <p>Camino</p>
-                </center>
-            </div>
+            <center>
+                <p>Camino</p>
+            </center>
         </div>
     </div>
+</div>
 
-    <br>
+<br>
 
 
 {% endblock %}

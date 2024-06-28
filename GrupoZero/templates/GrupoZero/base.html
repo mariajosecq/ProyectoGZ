@@ -56,9 +56,10 @@
                             Artistas
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="detalle_autor">Daniela Fernández</a></li>
-                            <li><a class="dropdown-item" href="detalle_autor2">Gabriel Marín</a></li>
-                            <li><a class="dropdown-item" href="detalle_autor3">Sergio Roger</a></li>
+                            {% for perfil in perfiles_usuarios %}
+                            <li><a class="dropdown-item" href="{% url 'detalle_autor' username=perfil.user.username %}">
+                                    {{perfil.user.get_full_name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                 </ul>

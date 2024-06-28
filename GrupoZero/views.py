@@ -11,23 +11,60 @@ from .models import PerfilUsuario, Rol
 # Create your views here.
 
 def principal(request):
-    context={}
+    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
+
+    for perfil in perfiles_usuarios:
+        print(perfil.user.get_full_name())
+
+    context = {
+        'perfiles_usuarios': perfiles_usuarios
+    }
     return render(request, 'GrupoZero/principal.html',context)
 
 def perfil_usuario(request):
-    context={}
+    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
+
+    for perfil in perfiles_usuarios:
+        print(perfil.user.get_full_name())
+
+    context = {
+        'perfiles_usuarios': perfiles_usuarios
+    }
     return render(request, 'GrupoZero/perfil_usuario.html',context)
 
 def perfil_admin(request):
-    context={}
+    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
+
+    for perfil in perfiles_usuarios:
+        print(perfil.user.get_full_name())
+
+    context = {
+        'perfiles_usuarios': perfiles_usuarios
+    }
     return render(request, 'GrupoZero/perfil_admin.html',context)
 
 def detalle_obra(request):
-    context={}
+    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
+
+    for perfil in perfiles_usuarios:
+        print(perfil.user.get_full_name())
+
+    context = {
+        'perfiles_usuarios': perfiles_usuarios
+    }
     return render(request, 'GrupoZero/detalle_obra.html',context)
 
-def detalle_autor(request):
-    context={}
+def detalle_autor(request, username):
+    user = get_object_or_404(User, username=username)
+    perfil_usuario = get_object_or_404(PerfilUsuario, user=user)
+
+    # Obtener todos los perfiles de usuarios con rol cod_rol=2 para el desplegable del navbar
+    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
+
+    context = {
+        'perfil_usuario': perfil_usuario,
+        'perfiles_usuarios': perfiles_usuarios,  # Agregar la lista de perfiles para el navbar
+    }
     return render(request, 'GrupoZero/detalle_autor.html',context)
 
 def detalle_autor2(request):
@@ -39,7 +76,14 @@ def detalle_autor3(request):
     return render(request, 'GrupoZero/detalle_autor3.html',context)
 
 def blog(request):
-    context={}
+    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
+
+    for perfil in perfiles_usuarios:
+        print(perfil.user.get_full_name())
+
+    context = {
+        'perfiles_usuarios': perfiles_usuarios
+    }
     return render(request, 'GrupoZero/blog.html',context)
 
 def base(request):
@@ -184,3 +228,18 @@ def get_desc(request):
 def perfil_usuario(request):
     perfil_usuario = get_object_or_404(PerfilUsuario, user=request.user)
     return render(request, 'GrupoZero/perfil_usuario.html', {'perfil_usuario': perfil_usuario})
+
+
+def get_usuario_artista():
+    # Obtener todos los perfiles de usuarios con rol cod_rol=2
+    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
+
+    for perfil in perfiles_usuarios:
+        print(perfil.user.get_full_name())
+
+    context = {
+        'perfiles_usuarios': perfiles_usuarios
+    }
+
+    return context
+
