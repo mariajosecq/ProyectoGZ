@@ -45,7 +45,7 @@
 
                         <p class="fuente-parrafo-blanco">
                             {% if user.is_authenticated %}
-                            <b>NOMBRE:</b><span class="espacio-parrafo"></span> {{ user.get_full_name }}<br>
+                            <b>NOMBRE:</b><span class="espacio-parrafo"></span> {{ user.get_full_name|capfirst }}<br>
                             <b>CORREO:</b><span class="espacio-parrafo"></span> {{ user.email }}<br>
                             <b>DESCRIPCIÓN:</b><span class="espacio-parrafo"></span>
                             {% obtener_descripcion_perfil user %}
@@ -147,72 +147,24 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Fecha Publicación</th>
                                             <th scope="col">Nombre</th>
-                                            <th scope="col">Imagen</th>
                                             <th scope="col">Descripción</th>
                                             <th scope="col">Precio (CLP)</th>
                                             <th scope="col">Categoría</th>
                                             <th scope="col">Estado</th>
-                                            <th scope="col">Descripción Estado</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for obra in obras_usuario %}
                                         <tr>
-                                            <th scope="row">5</th>
-                                            <td>05/01/2024</td>
-                                            <td>Hojas de Otoño</td>
-                                            <td>hojasDeOtono.jpeg</td>
-                                            <td>Lienzo de 40x40cm, óleo</td>
-                                            <td>$175.000</td>
-                                            <td>Pintura</td>
-                                            <td>Pendiente</td>
-                                            <td>Esperando revisión</td>
+                                            <th scope="row">{{ obra.cod_obra }}</th>
+                                            <td>{{ obra.nombre_obra }}</td>
+                                            <td>{{ obra.descripcion }}</td>
+                                            <td>${{ obra.precio }}</td>
+                                            <td>{{ obra.categoria.nombre_categoria|capfirst }}</td>
+                                            <td>{{ obra.estado.nombre_estado_obra|capfirst }}</td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>17/09/2023</td>
-                                            <td>Flores de Verano</td>
-                                            <td>floresDeVerano.jpeg</td>
-                                            <td>Lienzo de 30x40cm, óleo</td>
-                                            <td>$145.000</td>
-                                            <td>Pintura</td>
-                                            <td>Aprobado</td>
-                                            <td>-</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>14/07/2023</td>
-                                            <td>Pensador</td>
-                                            <td>pensador.jpeg</td>
-                                            <td>30 cm de altura, acero</td>
-                                            <td>$100.000</td>
-                                            <td>Escultura</td>
-                                            <td>Aprobado</td>
-                                            <td>-</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>30/11/2021</td>
-                                            <td>Camino</td>
-                                            <td>camino.jpeg</td>
-                                            <td>Lienzo de 50x50cm</td>
-                                            <td>$95.000</td>
-                                            <td>Pintura</td>
-                                            <td>Aprobado</td>
-                                            <td>-</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>26/11/2021</td>
-                                            <td>Camino</td>
-                                            <td>camino.jpeg</td>
-                                            <td>Lienzo de 50x50cm</td>
-                                            <td>$95.000</td>
-                                            <td>Pintura</td>
-                                            <td>Rechazado</td>
-                                            <td>Imagen de baja calidad</td>
-                                        </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -223,6 +175,8 @@
                     </div>
                 </div>
             </div>
+
+
 
             <!--Botón Nueva Obra-->
             <button type="button" class="boton-perfil" data-bs-toggle="modal" data-bs-target="#ModalNuevaObra">

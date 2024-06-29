@@ -25,10 +25,14 @@ def perfil_usuario(request):
     # Obtener perfiles de usuarios artistas
     perfiles_artistas = get_usuarios_artistas()
 
+    # Obtener obras del usuario actual
+    obras_usuario = Obra.objects.filter(user=request.user)
+
     context = {
         'categorias': categorias,
         'perfil_usuario': perfil_usuario,
         'perfiles_artistas': perfiles_artistas,
+        'obras_usuario': obras_usuario,
         # Otros datos que necesites pasar al contexto
     }
 
