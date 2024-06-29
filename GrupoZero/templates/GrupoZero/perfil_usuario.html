@@ -229,54 +229,62 @@
                 <b>NUEVA OBRA</b>
             </button>
 
-            <!--Modal formulario para publicar una Nueva Obra-->
-            <div class="modal" tabindex="-1" id="ModalNuevaObra">
+            <div class="modal" tabindex="-1" id="ModalNuevaObra" style="display: none;">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
-                        <div class="modal-header fuente-titulo-blanco">
-                            <h5 class="modal-title">NUEVA OBRA</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="FormControlNombre" class="form-label">Nombre</label>
-                                <textarea class="form-control" id="FormControlNombre" rows="1"></textarea>
+                        <form method="POST" action="{% url 'nueva_obra' %}" enctype="multipart/form-data" id="form_nueva_obra">
+                            {% csrf_token %}
+                            <div class="modal-header fuente-titulo-blanco">
+                                <h5 class="modal-title">NUEVA OBRA</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="mb-3">
-                                <label for="formFileSm" class="form-label ">Imagen</label>
-                                <input class="form-control form-control-sm fuente-parrafo-negro" id="formFileSm"
-                                    type="file">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="id_nombre_obra" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control fuente-parrafo-negro" id="id_nombre_obra" name="nombre_obra" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_imagen1" class="form-label">Imagen 1</label>
+                                    <input type="file" class="form-control fuente-parrafo-negro" id="id_imagen1" name="imagen1" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_imagen2" class="form-label">Imagen 2</label>
+                                    <input type="file" class="form-control fuente-parrafo-negro" id="id_imagen2" name="imagen2" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_imagen3" class="form-label">Imagen 3</label>
+                                    <input type="file" class="form-control fuente-parrafo-negro" id="id_imagen3" name="imagen3" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_imagen4" class="form-label">Imagen 4</label>
+                                    <input type="file" class="form-control fuente-parrafo-negro" id="id_imagen4" name="imagen4" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_categoria" class="form-label">Categoría</label>
+                                    <select id="id_categoria" name="categoria" class="form-control fuente-parrafo-negro">
+                                        {% for categoria in categorias %}
+                                        <option value="{{ categoria.cod_categoria }}">{{ categoria.nombre_categoria|capfirst }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_descripcion" class="form-label">Descripción</label>
+                                    <textarea class="form-control fuente-parrafo-negro" id="id_descripcion" name="descripcion" rows="10"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_precio" class="form-label">Precio</label>
+                                    <input type="number" class="form-control fuente-parrafo-negro" id="id_precio" name="precio" min="0" step="1" required>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="menuDesplegable">Categoría</label>
-                                <select id="menuDesplegable" name="menuDesplegable"
-                                    class="fuente-parrafo-negro espacio-parrafo">
-                                    <option value="opcion1">Pintura</option>
-                                    <option value="opcion2">Escultura</option>
-                                    <option value="opcion3">Tejido</option>
-                                    <option value="opcion4">Orfebrería</option>
-                                    <option value="opcion4">Otros</option>
-                                </select>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn boton-modal">Enviar solicitud</button>
                             </div>
-
-                            <div class="mb-3">
-                                <label for="FormControlNombre" class="form-label">Descripción</label>
-                                <textarea class="form-control  fuente-parrafo-negro" id="FormControlNombre" rows="10"
-                                    placeholder="Ingrese una descripción."></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="FormControlPrecio" class="form-label">Precio</label>
-                                <input type="number" class="form-control fuente-parrafo-negro" id="FormControlPrecio"
-                                    placeholder="999.999" min="0" step="1">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn boton-modal">Enviar solicitud</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
-            </div>
+            </div>           
+            
         </div>
     </div>
     <div class="col-md-1"></div>

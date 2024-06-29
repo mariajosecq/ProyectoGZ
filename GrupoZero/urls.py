@@ -18,5 +18,7 @@ urlpatterns = [
     path('editar_perfil/', views.editar_perfil, name='editar_perfil'),
     path('get_desc/', views.get_desc, name='get_desc'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('get_usuario_artista/', views.get_usuario_artista, name='get_usuario_artista'),
+    path('get_usuarios_artistas/', views.get_usuarios_artistas, name='get_usuarios_artistas'),
+    path('nueva_obra/', views.nueva_obra, name='nueva_obra'),
+    path('get_categorias/', views.get_categorias, name='get_categorias'),
 ]

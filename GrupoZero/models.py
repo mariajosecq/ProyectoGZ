@@ -39,11 +39,14 @@ class EstadoObra(models.Model):
 class Obra(models.Model):
     cod_obra = models.IntegerField(primary_key=True)
     nombre_obra = models.CharField(max_length=20)
-    imagen = models.ImageField(upload_to=user_directory_path)
+    imagen1 = models.ImageField(upload_to=user_directory_path)
+    imagen2 = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
+    imagen3 = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
+    imagen4 = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
     descripcion = models.CharField(max_length=500)
     precio = models.IntegerField()
     estado = models.ForeignKey('EstadoObra',on_delete=models.CASCADE, to_field='cod_estado_obra', db_column='cod_estado_obra', null=True)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field='id')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     categoria = models.ForeignKey('Categoria',on_delete=models.CASCADE, to_field='cod_categoria', db_column='cod_categoria')
 
 

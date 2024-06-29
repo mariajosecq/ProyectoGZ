@@ -1,57 +1,45 @@
-import time
-
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
-from .models import PerfilUsuario, Rol
+from django.http import HttpResponseForbidden
+
+from .models import PerfilUsuario, Rol, Obra, EstadoObra, Categoria
 
 # Create your views here.
 
 def principal(request):
-    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
-
-    for perfil in perfiles_usuarios:
-        print(perfil.user.get_full_name())
-
-    context = {
-        'perfiles_usuarios': perfiles_usuarios
-    }
+    context = get_usuarios_artistas()
     return render(request, 'GrupoZero/principal.html',context)
 
+@login_required
 def perfil_usuario(request):
-    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
+    # Obtener categorías
+    categorias = get_categorias()
 
-    for perfil in perfiles_usuarios:
-        print(perfil.user.get_full_name())
+    # Obtener perfil de usuario actual
+    perfil_usuario = get_object_or_404(PerfilUsuario, user=request.user)
+
+    # Obtener perfiles de usuarios artistas
+    perfiles_artistas = get_usuarios_artistas()
 
     context = {
-        'perfiles_usuarios': perfiles_usuarios
+        'categorias': categorias,
+        'perfil_usuario': perfil_usuario,
+        'perfiles_artistas': perfiles_artistas,
+        # Otros datos que necesites pasar al contexto
     }
-    return render(request, 'GrupoZero/perfil_usuario.html',context)
+
+    return render(request, 'GrupoZero/perfil_usuario.html', context)
 
 def perfil_admin(request):
-    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
-
-    for perfil in perfiles_usuarios:
-        print(perfil.user.get_full_name())
-
-    context = {
-        'perfiles_usuarios': perfiles_usuarios
-    }
+    context = get_usuarios_artistas()
     return render(request, 'GrupoZero/perfil_admin.html',context)
 
 def detalle_obra(request):
-    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
-
-    for perfil in perfiles_usuarios:
-        print(perfil.user.get_full_name())
-
-    context = {
-        'perfiles_usuarios': perfiles_usuarios
-    }
+    context = get_usuarios_artistas()
     return render(request, 'GrupoZero/detalle_obra.html',context)
 
 def detalle_autor(request, username):
@@ -76,14 +64,7 @@ def detalle_autor3(request):
     return render(request, 'GrupoZero/detalle_autor3.html',context)
 
 def blog(request):
-    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
-
-    for perfil in perfiles_usuarios:
-        print(perfil.user.get_full_name())
-
-    context = {
-        'perfiles_usuarios': perfiles_usuarios
-    }
+    context = get_usuarios_artistas()
     return render(request, 'GrupoZero/blog.html',context)
 
 def base(request):
@@ -223,14 +204,7 @@ def get_desc(request):
 
     return render(request, 'GrupoZero/perfil_usuario.html', context) 
 
-
-@login_required
-def perfil_usuario(request):
-    perfil_usuario = get_object_or_404(PerfilUsuario, user=request.user)
-    return render(request, 'GrupoZero/perfil_usuario.html', {'perfil_usuario': perfil_usuario})
-
-
-def get_usuario_artista():
+def get_usuarios_artistas():
     # Obtener todos los perfiles de usuarios con rol cod_rol=2
     perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
 
@@ -240,6 +214,53 @@ def get_usuario_artista():
     context = {
         'perfiles_usuarios': perfiles_usuarios
     }
-
     return context
+
+def get_categorias():
+    categorias = Categoria.objects.all()
+    return categorias
+
+@login_required
+def nueva_obra(request):
+    # Obtener todas las categorías
+    categorias = Categoria.objects.all()
+
+    if request.method == 'POST':
+        # Obtener datos del formulario
+        nombre_obra = request.POST.get('nombre_obra')
+        imagen1 = request.FILES.get('imagen1')
+        imagen2 = request.FILES.get('imagen2')
+        imagen3 = request.FILES.get('imagen3')
+        imagen4 = request.FILES.get('imagen4')
+        categoria_id = request.POST.get('categoria')
+        descripcion = request.POST.get('descripcion')
+        precio = request.POST.get('precio')
+
+        # Validar que todos los campos requeridos estén presentes
+        if not (nombre_obra and imagen1 and imagen2 and imagen3 and imagen4 and categoria_id and descripcion and precio):
+            return HttpResponseForbidden("Todos los campos son obligatorios")
+
+        # Obtener el estado "pendiente" (id = 2)
+        estado_pendiente = EstadoObra.objects.get(cod_estado_obra=2)
+
+        # Crear la nueva obra
+        nueva_obra = Obra(
+            nombre_obra=nombre_obra,
+            imagen1=imagen1,
+            imagen2=imagen2,
+            imagen3=imagen3,
+            imagen4=imagen4,
+            descripcion=descripcion,
+            precio=precio,
+            estado=estado_pendiente,
+            user=request.user,  
+            categoria_id=categoria_id
+        )
+        nueva_obra.save()
+
+        return redirect('perfil_usuario')  # Redireccionar a donde corresponda después de guardar
+
+    # Pasar categorías al contexto del template si el método no es POST
+    context = {'categorias': categorias}
+    return render(request, 'GrupoZero/perfil_usuario.html', context)
 
