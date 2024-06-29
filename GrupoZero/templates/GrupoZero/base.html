@@ -69,6 +69,20 @@
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                 <button class="btn btn-outline-light" type="submit">Buscar</button>
             </form>
+
+            <div>
+                <!-- Botón Mi Perfil -->
+                {% if user.is_authenticated %}
+                    {% if user.perfilusuario %}
+                        {% if user.perfilusuario.rol.cod_rol == 1 %}
+                            <a href="{% url 'perfil_admin' %}" class="navbar-login btn btn-outline-light">Mi Perfil</a>
+                        {% elif user.perfilusuario.rol.cod_rol == 2 %}
+                            <a href="{% url 'perfil_usuario' %}" class="navbar-login btn btn-outline-light">Mi Perfil</a>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            </div>
+
             <!-- Botón de Iniciar Sesión -->
 
             <div class="login">
