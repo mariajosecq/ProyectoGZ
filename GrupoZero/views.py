@@ -43,18 +43,24 @@ def perfil_admin(request):
     # Obtener perfil de usuario actual
     perfil_usuario = get_object_or_404(PerfilUsuario, user=request.user)
     
-    # Obtener todas las obras
-    obras = Obra.objects.all()
     
-    # Obtener todos los estados de obras
-    estados = EstadoObra.objects.all()
+    # Tu lógica existente para obtener datos
+    obras = Obra.objects.all()  # Esto es un ejemplo, ajusta según tu lógica
+
+    if request.method == 'POST':
+        for obra in obras:
+            estado_nuevo = request.POST.get(f'estado_{obra.cod_obra}')
+            obra.estado = EstadoObra.objects.get(pk=estado_nuevo)
+            obra.save()
+
+        return redirect('perfil_admin')  # Redirige a la misma página después de guardar cambios
 
     context = {
         'perfil_usuario': perfil_usuario,
         'obras': obras,
-        'estados': estados,
-        # Otros datos que necesites pasar al contexto
+        'estados': EstadoObra.objects.all(), 
     }
+
     return render(request, 'GrupoZero/perfil_admin.html', context)
 
 def detalle_obra(request):
@@ -297,3 +303,18 @@ def modal_obras(request):
         'estados': estados,
     }
     return render(request, 'GrupoZero/perfil_admin.html', context)
+
+def guardar_cambios_obra(request):
+    if request.method == 'POST':
+        obras = Obra.objects.all()  # Obtén todas las obras (ajusta según tu lógica)
+        
+        for obra in obras:
+            estado_nuevo_id = request.POST.get(f'estado_{obra.cod_obra}')
+            estado_nuevo = EstadoObra.objects.get(pk=estado_nuevo_id)
+            obra.estado = estado_nuevo
+            obra.save()
+        
+        return redirect('perfil_admin')  # Redirige a la página perfil_admin después de guardar los cambios
+
+    # Si no es una solicitud POST, manejar aquí como desees (opcional)
+    return redirect('perfil_admin')  # Redirige a la página perfil_admin en caso de no ser POST

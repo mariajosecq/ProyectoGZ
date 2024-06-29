@@ -134,55 +134,61 @@
                                     <h5 class="modal-title" id="ModalObrasLabel">OBRAS</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <!-- Aquí va la tabla de obras -->
-                                    <div class="table-responsive">
-                                        <table class="table fuente-parrafo-negro">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Autor</th>
-                                                    <th scope="col">Nombre</th>
-                                                    <th scope="col">Imagen</th>
-                                                    <th scope="col">Descripción</th>
-                                                    <th scope="col">Precio (CLP)</th>
-                                                    <th scope="col">Categoría</th>
-                                                    <th scope="col">Estado</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for obra in obras %}
-                                                <tr>
-                                                    <th scope="row">{{ obra.cod_obra }}</th>
-                                                    <td>{{ obra.user.first_name|capfirst}}</td>
-                                                    <td>{{ obra.nombre_obra }}</td>
-                                                    <td>
-                                                        {% if obra.imagen1 %}
-                                                        <a href="{{ obra.imagen1.url }}" target="_blank" alt="Foto {{ obra.nombre_obra }}" class="hipervinculo">
-                                                            {{ obra.imagen1.name }}
-                                                        </a>
-                                                        {% endif %}
-                                                    </td>
-                                                    <td>{{ obra.descripcion|capfirst }}</td>
-                                                    <td>${{ obra.precio }}</td>
-                                                    <td>{{ obra.categoria.nombre_categoria|capfirst }}</td>
-                                                    <td>
-                                                        <select name="estado_{{ obra.cod_obra }}" class="fuente-parrafo">
-                                                            {% for estado in estados %}
-                                                            <option value="{{ estado.cod_estado_obra }}" {% if obra.estado.cod_estado_obra == estado.cod_estado_obra %} selected {% endif %}>{{ estado.nombre_estado_obra|capfirst }}</option>
-                                                            {% endfor %}
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
+                                <form method="POST" action="{% url 'guardar_cambios_obra' %}">
+                                    {% csrf_token %}
+                                    <div class="modal-body">
+                                        <!-- Aquí va la tabla de obras -->
+                                        <div class="table-responsive">
+                                            <table class="table fuente-parrafo-negro">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Autor</th>
+                                                        <th scope="col">Nombre</th>
+                                                        <th scope="col">Imagen</th>
+                                                        <th scope="col">Descripción</th>
+                                                        <th scope="col">Precio (CLP)</th>
+                                                        <th scope="col">Categoría</th>
+                                                        <th scope="col">Estado</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for obra in obras %}
+                                                    <tr>
+                                                        <th scope="row">{{ obra.cod_obra }}</th>
+                                                        <td>{{ obra.user.first_name|capfirst }}</td>
+                                                        <td>{{ obra.nombre_obra }}</td>
+                                                        <td>
+                                                            {% if obra.imagen1 %}
+                                                            <a href="{{ obra.imagen1.url }}" target="_blank"
+                                                                alt="Foto {{ obra.nombre_obra }}" class="hipervinculo">
+                                                                {{ obra.imagen1.name }}
+                                                            </a>
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>{{ obra.descripcion|capfirst }}</td>
+                                                        <td>${{ obra.precio }}</td>
+                                                        <td>{{ obra.categoria.nombre_categoria|capfirst }}</td>
+                                                        <td>
+                                                            <select name="estado_{{ obra.cod_obra }}" class="fuente-parrafo">
+                                                                {% for estado in estados %}
+                                                                <option value="{{ estado.cod_estado_obra }}"
+                                                                    {% if obra.estado.cod_estado_obra == estado.cod_estado_obra %}
+                                                                    selected {% endif %}>{{ estado.nombre_estado_obra|capfirst }}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-primary">Guardar cambios</button>
-                                </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
