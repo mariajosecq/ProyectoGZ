@@ -32,11 +32,11 @@
                                 <table>
                                     <tr>
                                         <th>Nombre:</th>
-                                        <td>{{ perfil_usuario.user.get_full_name }}</td>
+                                        <td>{{ perfil_usuario.user.get_full_name|capfirst }}</td>
                                     </tr>
                                     <tr>
                                         <th>N° Obras:</th>
-                                        <td>{{ perfil_usuario.user.obra_set.count }}</td>
+                                        <td>{{ nro_obras_aprobadas }}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -47,7 +47,7 @@
                                 <h3>
                                     <center>Sobre el autor</center>
                                 </h3>
-                                <p>{{ perfil_usuario.descripcion }}</p>
+                                <p>{{ perfil_usuario.descripcion|capfirst }}</p>
                             </div>
                         </div>
                     </div>
@@ -63,44 +63,22 @@
 <!-- Tarjetas de las principales obras del artista -->
 <div class="gal-autor">
     <div class="titulo">
-        <h2>
-            <center>Principales Obras</center>
-        </h2>
+        <h2><center>Principales Obras</center></h2>
     </div>
 
     <div class="carr-autor">
+        {% for obra in obras_autor %}
         <div class="card-autor">
             <div class="img">
-                <a href="#"><img src="{% static 'img/img-perfilAdmin/floresDeVerano.jpg' %}" alt=""></a>
+                <a href="{% url 'detalle_obra' obra.cod_obra %}">
+                    <img src="{{ obra.imagen1.url }}" alt="">
+                </a>
             </div>
             <center>
-                <p>Flores de Verano</p>
+                <p>{{ obra.nombre_obra }}</p>
             </center>
         </div>
-        <div class="card-autor">
-            <div class="img">
-                <a href="#"><img src="{% static 'img/img-perfilAdmin/hojasDeOtono.jpg' %}" alt=""></a>
-            </div>
-            <center>
-                <p>Hojas de Otoño</p>
-            </center>
-        </div>
-        <div class="card-autor">
-            <div class="img">
-                <a href="#"><img src="{% static 'img/img-perfilAdmin/pensador.jpg' %}" alt=""></a>
-            </div>
-            <center>
-                <p>Pensador</p>
-            </center>
-        </div>
-        <div class="card-autor">
-            <div class="img">
-                <a href="#"><img src="{% static 'img/img-perfilAdmin/caminoHD.jpg' %}" alt=""></a>
-            </div>
-            <center>
-                <p>Camino</p>
-            </center>
-        </div>
+        {% endfor %}
     </div>
 </div>
 

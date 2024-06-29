@@ -79,8 +79,18 @@ def perfil_admin(request):
 
     return render(request, 'GrupoZero/perfil_admin.html', context)
 
-def detalle_obra(request):
-    context = get_usuarios_artistas()
+def detalle_obra(request, cod_obra):
+    perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
+
+    obra = get_object_or_404(Obra, cod_obra=cod_obra)
+
+    for perfil in perfiles_usuarios:
+        print(perfil.user.get_full_name())
+
+    context = {
+        'perfiles_usuarios': perfiles_usuarios,
+        'obra': obra,
+    }
     return render(request, 'GrupoZero/detalle_obra.html',context)
 
 def detalle_autor(request, username):
@@ -90,10 +100,18 @@ def detalle_autor(request, username):
     # Obtener todos los perfiles de usuarios con rol cod_rol=2 para el desplegable del navbar
     perfiles_usuarios = PerfilUsuario.objects.filter(rol__cod_rol=2)
 
+    obras_autor = Obra.objects.filter(user=perfil_usuario.user, estado__nombre_estado_obra='aprobado')
+
+    obras_aprobadas = perfil_usuario.user.obra_set.filter(estado__nombre_estado_obra='aprobado')
+    nro_obras_aprobadas = obras_aprobadas.count()
+
     context = {
         'perfil_usuario': perfil_usuario,
-        'perfiles_usuarios': perfiles_usuarios,  # Agregar la lista de perfiles para el navbar
-    }
+        'perfiles_usuarios': perfiles_usuarios, 
+        'obras_autor': obras_autor,
+        'nro_obras_aprobadas': nro_obras_aprobadas,
+    }  
+
     return render(request, 'GrupoZero/detalle_autor.html',context)
 
 def detalle_autor2(request):

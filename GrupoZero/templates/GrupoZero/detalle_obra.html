@@ -1,85 +1,83 @@
 {% extends 'GrupoZero/base.html' %}
 {% load static %}
-{% block title%} detalle_obra {% endblock %}
+
+{% block title %}Detalle Obra{% endblock %}
 
 {% block content %}
 
+<br>
 
-    <br>
-
-
-    <!-- Seccion de informacion y descripcion de obra con imagen-->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">
-                <!--Imagen autor-->
-                <div class="img-obra">
-                    <img src="{% static 'img/img-detalleObra/ParejaAbrazo.jpg' %}" alt="img obra" />
-                </div>
+<!-- Seccion de informacion y descripcion de obra con imagen-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <!-- Imagen de la obra -->
+            <div class="img-obra">
+                <img src="{{ obra.imagen1.url }}" alt="Imagen de la obra" />
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-6 caja-texto-obra contenedor-obra">
-                <div class="desc-obra">
-                    <h3>
-                        Abrazo de pareja
-                    </h3>
-                    <br>
-                    <p>
-                        <b>CATEGORIA:</b> Escultura<br>
-                        <b>DESCRIPCIÓN:</b> Esta imponente escultura de piedra caliza, esculpida con meticulosa técnica, destaca por su forma robusta y equilibrada.
-                         Con unas dimensiones de 73 cm de alto, 25 cm de ancho y 25 cm de longitud, esta obra logra transmitir tanto la fuerza como la delicadeza de
-                          la piedra natural. Su diseño y ejecución reflejan una combinación de precisión y arte, capturando la esencia atemporal del material.<br>
-                        <b>PRECIO:</b> $99.990<br>
-                        <b>FECHA DE PUBLICACION:</b> 01/06/2024<br>
-                        <b>AUTOR:</b> <a class="enlace" href="detalle_autor2.html">Gabriel Marin</a>
-
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-1"></div>
         </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-6 caja-texto-obra contenedor-obra">
+            <div class="desc-obra">
+                <h3>{{ obra.nombre_obra }}</h3>
+                <br>
+                <p>
+                    <b>CATEGORIA:</b> {{ obra.categoria.nombre_categoria|capfirst }}<br>
+                    <b>DESCRIPCIÓN:</b> {{ obra.descripcion|capfirst }}<br>
+                    <b>PRECIO:</b> ${{ obra.precio }}<br>
+                    <b>AUTOR:</b> <a class="enlace" href="{% url 'detalle_autor' obra.user.email %}">{{ obra.user.get_full_name|capfirst }}</a>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+<!-- Galería de fotos de la obra -->
+<div class="gal-obra">
+    <div class="titulo-obra">
+        <h2><center>Galería de fotos</center></h2>
     </div>
 
-
-
-
-
-
-    <!-- Tarjetas de las fotos de la obra -->
-    <div class="gal-obra">
-        <div class="titulo-obra">
-            <h2>
-                <center>Galería de fotos</center>
-            </h2>
-        </div>
-
-        <div class="carr-obra">
-            <div class="card-obra">
-                <div class="img">
-                    <a href="#"><img src="{% static 'img/img-detalleObra/ParejaAbrazo.jpg' %}" alt=""></a>
-                </div>
-            </div>
-            <div class="card-obra">
-                <div class="img">
-                    <a href="#"><img src="{% static 'img/img-detalleObra/ParejaAbrazo2.jpg' %}" alt=""></a>
-                </div>
-            </div>
-            <div class="card-obra">
-                <div class="img">
-                    <a href="#"><img src="{% static 'img/img-detalleObra/ParejaAbrazo3.jpg' %}" alt=""></a>
-                </div>
-            </div>
-            <div class="card-obra">
-                <div class="img">
-                    <a href="#"><img src="{% static 'img/img-detalleObra/ParejaAbrazo4.jpg' %}" alt=""></a>
-                </div>
+    <div class="carr-obra">
+        <!-- Itera sobre las imágenes de la obra -->
+        {% if obra.imagen1 %}
+        <div class="card-obra">
+            <div class="img">
+                <a href="{{ obra.imagen1.url }}"><img src="{{ obra.imagen1.url }}" alt=""></a>
             </div>
         </div>
+        {% endif %}
+        
+        {% if obra.imagen2 %}
+        <div class="card-obra">
+            <div class="img">
+                <a href="{{ obra.imagen2.url }}"><img src="{{ obra.imagen2.url }}" alt=""></a>
+            </div>
+        </div>
+        {% endif %}
+        
+        {% if obra.imagen3 %}
+        <div class="card-obra">
+            <div class="img">
+                <a href="{{ obra.imagen3.url }}"><img src="{{ obra.imagen3.url }}" alt=""></a>
+            </div>
+        </div>
+        {% endif %}
+        
+        {% if obra.imagen4 %}
+        <div class="card-obra">
+            <div class="img">
+                <a href="{{ obra.imagen4.url }}"><img src="{{ obra.imagen4.url }}" alt=""></a>
+            </div>
+        </div>
+        {% endif %}
     </div>
+</div>
 
-    <br>
-
+<br>
 
 {% endblock %}
+
 
