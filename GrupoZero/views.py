@@ -1,5 +1,4 @@
-from django.shortcuts import get_object_or_404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -7,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseForbidden
 
 from .models import PerfilUsuario, Rol, Obra, EstadoObra, Categoria
+
 
 # Create your views here.
 
@@ -43,9 +43,23 @@ def perfil_admin(request):
     # Obtener perfil de usuario actual
     perfil_usuario = get_object_or_404(PerfilUsuario, user=request.user)
     
+        # Obtener todos los perfiles de usuarios con sus roles
+    perfiles_usuarios = PerfilUsuario.objects.all()
     
-    # Tu lógica existente para obtener datos
-    obras = Obra.objects.all()  # Esto es un ejemplo, ajusta según tu lógica
+    # Obtener roles disponibles para el desplegable
+    roles = Rol.objects.all()
+
+    if request.method == 'POST':
+        for perfil_usuario in perfiles_usuarios:
+            rol_nuevo_id = request.POST.get(f'rol_{perfil_usuario.user.username}')
+            rol_nuevo = Rol.objects.get(pk=rol_nuevo_id)
+            perfil_usuario.rol = rol_nuevo
+            perfil_usuario.save()
+
+        return redirect('perfil_admin')
+    
+    
+    obras = Obra.objects.all()  
 
     if request.method == 'POST':
         for obra in obras:
@@ -57,6 +71,8 @@ def perfil_admin(request):
 
     context = {
         'perfil_usuario': perfil_usuario,
+        'perfiles_usuarios': perfiles_usuarios,
+        'roles': roles,
         'obras': obras,
         'estados': EstadoObra.objects.all(), 
     }

@@ -199,57 +199,61 @@
                         <b>USUARIOS</b>
                     </button>
 
-                    <!--Modal tabla con lista de usuarios-->
+                    <!-- Modal tabla con lista de usuarios -->
                     <div class="modal" tabindex="-1" id="ModalNuevaObra">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header fuente-titulo-blanco">
                                     <h5 class="modal-title">USUARIOS</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="table-responsive">
-                                        <table class="table fuente-parrafo-negro">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Fecha Creación</th>
-                                                    <th scope="col">Nombre</th>
-                                                    <th scope="col">Correo</th>
-                                                    <th scope="col">Cantidad Obras</th>
-                                                    <th scope="col">Estado</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>26/11/2021</td>
-                                                    <td>Daniela Fernández</td>
-                                                    <td>danielafernandez@grupozero.com</td>
-                                                    <td>5</td>
-                                                    <td>
-                                                        <select id="menuDesplegable" name="menuDesplegable"
-                                                            class="fuente-parrafo">
-                                                            <option value="opcion1" selected>Activo</option>
-                                                            <option value="opcion2">Inactivo</option>
-                                                            <option value="opcion3">Bloqueado</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                <form method="POST" action="{% url 'perfil_admin' %}">
+                                    {% csrf_token %}
+                                    <div class="modal-body">
+                                        <div class="table-responsive">
+                                            <table class="table fuente-parrafo-negro">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Nombre</th>
+                                                        <th scope="col">Correo</th>
+                                                        <th scope="col">Cantidad Obras</th>
+                                                        <th scope="col">Rol</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for perfil_usuario in perfiles_usuarios %}
+                                                    <tr>
+                                                        <th scope="row">{{ forloop.counter }}</th>
+                                                        <td>{{ perfil_usuario.user.get_full_name }}</td>
+                                                        <td>{{ perfil_usuario.user.email }}</td>
+                                                        <td>{{ perfil_usuario.user.obra_set.count }}</td>
+                                                        <td>
+                                                            <select name="rol_{{ perfil_usuario.user.username }}" class="fuente-parrafo">
+                                                                {% for rol in roles %}
+                                                                <option value="{{ rol.pk }}"
+                                                                    {% if perfil_usuario.rol_id == rol.pk %} selected {% endif %}>
+                                                                    {{ rol.nombre_rol }}
+                                                                </option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn boton-modal">Guardar cambios</button>
-                                </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn boton-modal">Guardar cambios</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
             <div class="col-md-1"></div>
