@@ -21,4 +21,5 @@ urlpatterns = [
     path('get_usuarios_artistas/', views.get_usuarios_artistas, name='get_usuarios_artistas'),
     path('nueva_obra/', views.nueva_obra, name='nueva_obra'),
     path('get_categorias/', views.get_categorias, name='get_categorias'),
+    path('modal_obras/', views.modal_obras, name='modal_obras'),
 ]

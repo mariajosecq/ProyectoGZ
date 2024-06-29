@@ -38,9 +38,24 @@ def perfil_usuario(request):
 
     return render(request, 'GrupoZero/perfil_usuario.html', context)
 
+@login_required
 def perfil_admin(request):
-    context = get_usuarios_artistas()
-    return render(request, 'GrupoZero/perfil_admin.html',context)
+    # Obtener perfil de usuario actual
+    perfil_usuario = get_object_or_404(PerfilUsuario, user=request.user)
+    
+    # Obtener todas las obras
+    obras = Obra.objects.all()
+    
+    # Obtener todos los estados de obras
+    estados = EstadoObra.objects.all()
+
+    context = {
+        'perfil_usuario': perfil_usuario,
+        'obras': obras,
+        'estados': estados,
+        # Otros datos que necesites pasar al contexto
+    }
+    return render(request, 'GrupoZero/perfil_admin.html', context)
 
 def detalle_obra(request):
     context = get_usuarios_artistas()
@@ -168,7 +183,7 @@ def editar_perfil(request):
             else:
                 user.first_name = nombre_split[0]
                 user.last_name = ''
-            
+                
         if email:
             user.email = email
             user.username = email
@@ -186,10 +201,13 @@ def editar_perfil(request):
         
         perfilUsuario.save()
 
-        return redirect('perfil_usuario')  # Redirigir a una página de perfil después de la actualización
-    
-
-    return render(request, 'GrupoZero/perfil_usuario.html')
+        # Redirigir según el rol del perfilUsuario
+        if perfilUsuario.rol and perfilUsuario.rol.cod_rol == 1:
+            return redirect('perfil_admin') 
+        else:
+            return redirect('perfil_usuario') 
+    else:
+        return render(request, 'GrupoZero/inicio.html')
 
 
 @login_required
@@ -268,3 +286,14 @@ def nueva_obra(request):
     context = {'categorias': categorias}
     return render(request, 'GrupoZero/perfil_usuario.html', context)
 
+from django.shortcuts import render
+from .models import Obra, EstadoObra
+
+def modal_obras(request):
+    obras = Obra.objects.all()  
+    estados = EstadoObra.objects.all() 
+    context = {
+        'obras': obras,
+        'estados': estados,
+    }
+    return render(request, 'GrupoZero/perfil_admin.html', context)
