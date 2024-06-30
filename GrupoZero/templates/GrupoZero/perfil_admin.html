@@ -225,7 +225,7 @@
                                                     {% for perfil_usuario in perfiles_usuarios %}
                                                     <tr>
                                                         <th scope="row">{{ forloop.counter }}</th>
-                                                        <td>{{ perfil_usuario.user.get_full_name }}</td>
+                                                        <td>{{ perfil_usuario.user.get_full_name|capfirst }}</td>
                                                         <td>{{ perfil_usuario.user.email }}</td>
                                                         <td>{{ perfil_usuario.user.obra_set.count }}</td>
                                                         <td>
@@ -233,7 +233,7 @@
                                                                 {% for rol in roles %}
                                                                 <option value="{{ rol.pk }}"
                                                                     {% if perfil_usuario.rol_id == rol.pk %} selected {% endif %}>
-                                                                    {{ rol.nombre_rol }}
+                                                                    {{ rol.nombre_rol|capfirst }}
                                                                 </option>
                                                                 {% endfor %}
                                                             </select>
