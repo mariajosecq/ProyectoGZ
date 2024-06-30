@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseForbidden
 
 from .models import PerfilUsuario, Rol, Obra, EstadoObra, Categoria
+from django.contrib import messages
 
 
 # Create your views here.
@@ -16,6 +17,7 @@ def principal(request):
 
 @login_required
 def perfil_usuario(request):
+
     # Obtener categorías
     categorias = get_categorias()
 
@@ -352,3 +354,17 @@ def guardar_cambios_obra(request):
 
     # Si no es una solicitud POST, manejar aquí como desees (opcional)
     return redirect('perfil_admin')  # Redirige a la página perfil_admin en caso de no ser POST
+
+def eliminar_obra(request):
+    if request.method == 'POST':
+
+        id = request.POST.get('obra_id')
+        try:
+            obra = Obra.objects.get(cod_obra=id)
+            obra.delete()
+            messages.success(request, 'Obra eliminada correctamente.')
+        except Obra.DoesNotExist:
+            messages.error(request, 'La obra seleccionada no existe.')
+
+    return redirect('perfil_usuario')
+    

@@ -152,6 +152,7 @@
                                             <th scope="col">Precio (CLP)</th>
                                             <th scope="col">Categoría</th>
                                             <th scope="col">Estado</th>
+                                            <th scope="col">Eliminar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -163,9 +164,16 @@
                                             <td>${{ obra.precio }}</td>
                                             <td>{{ obra.categoria.nombre_categoria|capfirst }}</td>
                                             <td>{{ obra.estado.nombre_estado_obra|capfirst }}</td>
+                                            <td>
+                                                <form action="{% url 'eliminar_obra' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="obra_id" value="{{ obra.cod_obra }}">
+                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                         {% endfor %}
-                                    </tbody>
+                                    </tbody>                                    
                                 </table>
                             </div>
                         </div>
