@@ -150,6 +150,7 @@
                                                         <th scope="col">Precio (CLP)</th>
                                                         <th scope="col">Categoría</th>
                                                         <th scope="col">Estado</th>
+                                                        <th scope="col"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -177,6 +178,13 @@
                                                                     selected {% endif %}>{{ estado.nombre_estado_obra|capfirst }}</option>
                                                                 {% endfor %}
                                                             </select>
+                                                        </td>
+                                                        <td>
+                                                            <form method="POST" action="{% url 'eliminar_obra_admin' %}">
+                                                                {% csrf_token %}
+                                                                <input type="hidden" name="obra_id" value="{{ obra.cod_obra }}">
+                                                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                     {% endfor %}
@@ -219,6 +227,7 @@
                                                         <th scope="col">Correo</th>
                                                         <th scope="col">Cantidad Obras</th>
                                                         <th scope="col">Rol</th>
+                                                        <th scope="col"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -238,6 +247,13 @@
                                                                 {% endfor %}
                                                             </select>
                                                         </td>
+                                                        <td>
+                                                            <form method="POST" action="{% url 'eliminar_usuario' %}">
+                                                                {% csrf_token %}
+                                                                <input type="hidden" name="usuario_id" value="{{ perfil_usuario.user.id }}">
+                                                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                            </form>
+                                                        </td>                                                        
                                                     </tr>
                                                     {% endfor %}
                                                 </tbody>

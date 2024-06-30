@@ -366,7 +366,8 @@ def eliminar_obra(request):
         except Obra.DoesNotExist:
             messages.error(request, 'La obra seleccionada no existe.')
 
-    return redirect('perfil_usuario')
+        return redirect('perfil_usuario')
+    return render(request, 'GrupoZero/perfil_usuario.html')
 
 def modificar_obra(request):
     if request.method == 'POST':
@@ -393,3 +394,27 @@ def modificar_obra(request):
         return redirect('perfil_usuario')  # Redirecciona a donde quieras después de modificar la obra (puede ser la lista de obras, por ejemplo)
     else:
         return redirect('perfil_usuario')  # Otra url si la solicitud no es POST o no es válida
+
+def eliminar_obra_admin(request):
+    if request.method == 'POST':
+        obra_id = request.POST.get('obra_id')
+        try:
+            obra = Obra.objects.get(cod_obra=obra_id)
+            obra.delete()
+            messages.success(request, 'Obra eliminada correctamente.')
+        except Obra.DoesNotExist:
+            messages.error(request, 'La obra seleccionada no existe.')
+        return redirect('perfil_admin')
+    return render(request, 'GrupoZero/perfil_admin.html')
+
+def eliminar_usuario(request):
+    if request.method == 'POST':
+        usuario_id = request.POST.get('usuario_id')
+        try:
+            usuario = User.objects.get(id=usuario_id)
+            usuario.delete()
+            messages.success(request, 'Usuario eliminado correctamente.')
+        except User.DoesNotExist:
+            messages.error(request, 'El usuario seleccionado no existe.')
+        return redirect('perfil_admin')  # Redirige a donde corresponda después de eliminar el usuario
+    return render(request, 'GrupoZero/perfil_admin.html')

@@ -23,6 +23,8 @@ urlpatterns = [
     path('get_categorias/', views.get_categorias, name='get_categorias'),
     path('modal_obras/', views.modal_obras, name='modal_obras'),
     path('guardar_cambios_obra/', views.guardar_cambios_obra, name='guardar_cambios_obra'),
-    path('eliminar_obra//int:cod_obra>/', views.eliminar_obra, name='eliminar_obra'),
+    path('eliminar_obra/', views.eliminar_obra, name='eliminar_obra'),
+    path('eliminar_obra_admin/', views.eliminar_obra_admin, name='eliminar_obra_admin'),
     path('modificar_obra/', views.modificar_obra, name='modificar_obra'),
+    path('eliminar-usuario/', views.eliminar_usuario, name='eliminar_usuario'),
 ]
