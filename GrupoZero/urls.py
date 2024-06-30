@@ -24,4 +24,5 @@ urlpatterns = [
     path('modal_obras/', views.modal_obras, name='modal_obras'),
     path('guardar_cambios_obra/', views.guardar_cambios_obra, name='guardar_cambios_obra'),
     path('eliminar_obra//int:cod_obra>/', views.eliminar_obra, name='eliminar_obra'),
+    path('modificar_obra/', views.modificar_obra, name='modificar_obra'),
 ]

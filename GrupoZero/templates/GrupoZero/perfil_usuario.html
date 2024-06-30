@@ -112,7 +112,6 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -152,7 +151,8 @@
                                             <th scope="col">Precio (CLP)</th>
                                             <th scope="col">Categoría</th>
                                             <th scope="col">Estado</th>
-                                            <th scope="col">Eliminar</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -164,6 +164,11 @@
                                             <td>${{ obra.precio }}</td>
                                             <td>{{ obra.categoria.nombre_categoria|capfirst }}</td>
                                             <td>{{ obra.estado.nombre_estado_obra|capfirst }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalModificarObra{{ obra.cod_obra }}">
+                                                    Modificar
+                                                </button>
+                                            </td>
                                             <td>
                                                 <form action="{% url 'eliminar_obra' %}" method="post">
                                                     {% csrf_token %}
@@ -183,6 +188,72 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal para Modificar Obra -->
+            {% for obra in obras_usuario %}
+            <div class="modal fade" id="ModalModificarObra{{ obra.cod_obra }}" tabindex="-1" aria-labelledby="ModalModificarObra{{ obra.cod_obra }}Label" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <form method="POST" action="{% url 'modificar_obra' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="modal-header fuente-titulo-blanco">
+                                <h5 class="modal-title" id="ModalModificarObra{{ obra.cod_obra }}Label">MODIFICAR OBRA: {{ obra.nombre_obra }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Campo de nombre de la obra (deshabilitado) -->
+                                <div class="mb-3">
+                                    <label for="nombre_obra{{ obra.cod_obra }}" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control fuente-parrafo-negro" id="nombre_obra{{ obra.cod_obra }}" name="nombre_obra" value="{{ obra.nombre_obra }}" readonly>
+                                </div>
+                                <!-- Campo oculto para el ID de la obra -->
+                                <input type="hidden" name="obra_id" value="{{ obra.cod_obra }}">
+                                <!-- Campos de modificación de la obra -->
+                                <div class="mb-3">
+                                    <label for="descripcion{{ obra.cod_obra }}" class="form-label">Descripción</label>
+                                    <textarea class="form-control fuente-parrafo-negro" id="descripcion{{ obra.cod_obra }}" name="descripcion" rows="5" placeholder="{{ obra.descripcion }}">{{ obra.descripcion }}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precio{{ obra.cod_obra }}" class="form-label">Precio (CLP)</label>
+                                    <input type="number" class="form-control fuente-parrafo-negro" id="precio{{ obra.cod_obra }}" name="precio" value="{{ obra.precio }}" placeholder="{{ obra.precio }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="categoria{{ obra.cod_obra }}" class="form-label">Categoría</label>
+                                    <select id="categoria{{ obra.cod_obra }}" name="categoria" class="form-control fuente-parrafo-negro">
+                                        {% for categoria in categorias %}
+                                            <option value="{{ categoria.cod_categoria }}" {% if categoria.cod_categoria == obra.categoria.cod_categoria %} selected {% endif %}>{{ categoria.nombre_categoria|capfirst }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imagen1{{ obra.cod_obra }}" class="form-label">Imagen 1</label>
+                                    <input type="file" class="form-control fuente-parrafo-negro" id="imagen1{{ obra.cod_obra }}" name="imagen1">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imagen2{{ obra.cod_obra }}" class="form-label">Imagen 2</label>
+                                    <input type="file" class="form-control fuente-parrafo-negro" id="imagen2{{ obra.cod_obra }}" name="imagen2">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imagen3{{ obra.cod_obra }}" class="form-label">Imagen 3</label>
+                                    <input type="file" class="form-control fuente-parrafo-negro" id="imagen3{{ obra.cod_obra }}" name="imagen3">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imagen4{{ obra.cod_obra }}" class="form-label">Imagen 4</label>
+                                    <input type="file" class="form-control fuente-parrafo-negro" id="imagen4{{ obra.cod_obra }}" name="imagen4">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-warning">Modificar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
 
 
 

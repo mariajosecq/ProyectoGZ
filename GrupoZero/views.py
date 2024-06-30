@@ -367,4 +367,29 @@ def eliminar_obra(request):
             messages.error(request, 'La obra seleccionada no existe.')
 
     return redirect('perfil_usuario')
-    
+
+def modificar_obra(request):
+    if request.method == 'POST':
+        obra_id = request.POST.get('obra_id')
+        obra = get_object_or_404(Obra, pk=obra_id)
+        
+        # Actualiza los campos de texto
+        obra.descripcion = request.POST.get('descripcion')
+        obra.precio = request.POST.get('precio')
+        obra.categoria_id = request.POST.get('categoria')
+        
+        # Actualiza las imágenes si se proporcionan
+        if request.FILES.get('imagen1'):
+            obra.imagen1 = request.FILES['imagen1']
+        if request.FILES.get('imagen2'):
+            obra.imagen2 = request.FILES['imagen2']
+        if request.FILES.get('imagen3'):
+            obra.imagen3 = request.FILES['imagen3']
+        if request.FILES.get('imagen4'):
+            obra.imagen4 = request.FILES['imagen4']
+        
+        obra.save()
+
+        return redirect('perfil_usuario')  # Redirecciona a donde quieras después de modificar la obra (puede ser la lista de obras, por ejemplo)
+    else:
+        return redirect('perfil_usuario')  # Otra url si la solicitud no es POST o no es válida
