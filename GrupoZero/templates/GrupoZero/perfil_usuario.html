@@ -147,7 +147,6 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Nombre</th>
-                                            <th scope="col">Descripción</th>
                                             <th scope="col">Precio (CLP)</th>
                                             <th scope="col">Categoría</th>
                                             <th scope="col">Estado</th>
@@ -160,7 +159,6 @@
                                         <tr>
                                             <th scope="row">{{ obra.cod_obra }}</th>
                                             <td>{{ obra.nombre_obra }}</td>
-                                            <td>{{ obra.descripcion }}</td>
                                             <td>${{ obra.precio }}</td>
                                             <td>{{ obra.categoria.nombre_categoria|capfirst }}</td>
                                             <td>{{ obra.estado.nombre_estado_obra|capfirst }}</td>

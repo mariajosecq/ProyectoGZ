@@ -146,7 +146,6 @@
                                                         <th scope="col">Autor</th>
                                                         <th scope="col">Nombre</th>
                                                         <th scope="col">Imagen</th>
-                                                        <th scope="col">Descripción</th>
                                                         <th scope="col">Precio (CLP)</th>
                                                         <th scope="col">Categoría</th>
                                                         <th scope="col">Estado</th>
@@ -167,7 +166,6 @@
                                                             </a>
                                                             {% endif %}
                                                         </td>
-                                                        <td>{{ obra.descripcion|capfirst }}</td>
                                                         <td>${{ obra.precio }}</td>
                                                         <td>{{ obra.categoria.nombre_categoria|capfirst }}</td>
                                                         <td>
