@@ -9,13 +9,56 @@ from .models import PerfilUsuario, Rol, Obra, EstadoObra, Categoria
 from django.contrib import messages
 
 
+
 # Create your views here.
+
+def user_usuario(cod_rol):
+    def decorator(view_func):
+        def _wrapped_view(request, *args, **kwargs):
+            if request.user.is_authenticated:
+                if request.user.perfilusuario.rol.cod_rol == cod_rol:
+                    return view_func(request, *args, **kwargs)
+                elif request.user.perfilusuario.rol.cod_rol == 1:
+                    return redirect('perfil_admin')
+                else:
+                    return HttpResponseForbidden("No tienes permiso para acceder a esta página.")
+            else:
+                return redirect('login')  # Redirige al login si no está autenticado
+        return _wrapped_view
+    return decorator
+def principal(request):
+    context = get_usuarios_artistas()
+    return render(request, 'GrupoZero/principal.html',context)
+
+def principal(request):
+    context = get_usuarios_artistas()
+    return render(request, 'GrupoZero/principal.html',context)
+
+
+def user_admin(cod_rol):
+    def decorator(view_func):
+        def _wrapped_view(request, *args, **kwargs):
+            if request.user.is_authenticated:
+                if request.user.perfilusuario.rol.cod_rol == cod_rol:
+                    return view_func(request, *args, **kwargs)
+                elif request.user.perfilusuario.rol.cod_rol == 2:
+                    return redirect('perfil_usuario')
+                else:
+                    return HttpResponseForbidden("No tienes permiso para acceder a esta página.")
+            else:
+                return redirect('login')  # Redirige al login si no está autenticado
+        return _wrapped_view
+    return decorator
+def principal(request):
+    context = get_usuarios_artistas()
+    return render(request, 'GrupoZero/principal.html',context)
 
 def principal(request):
     context = get_usuarios_artistas()
     return render(request, 'GrupoZero/principal.html',context)
 
 @login_required
+@user_usuario(2)
 def perfil_usuario(request):
 
     # Obtener categorías
@@ -41,6 +84,7 @@ def perfil_usuario(request):
     return render(request, 'GrupoZero/perfil_usuario.html', context)
 
 @login_required
+@user_admin(1)
 def perfil_admin(request):
     # Obtener perfil de usuario actual
     perfil_usuario = get_object_or_404(PerfilUsuario, user=request.user)
